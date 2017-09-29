@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+#jumbo{
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    width: 100%;
+    height: 600px;
+
+    box-shadow: 10px 10px 120px rgba(0,0,0,0.40);
+}
+
+#jumbo-content{
+    padding-top: 190px;
+    text-align: center;
+}
+
+#jumbo-bg{
+    background-image: url("https://www.scdn.co/i/home/segmented-home/premium_dancer.png");
+}
+
+.jumbo-header{
+    color: white;
+    font-size: 80px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    font-weight: 900;
+    font-family: "circ-black";
+}
+
+.jumbo-sub{
+    color: white;
+    font-size: 32px;
+    font-weight: 900px;
+    line-height: 1.3;
+    font-family: "circ-black";
+}
+
+.jumbo-cta-btn{
+    background-color: #1aa34a;
+    color: white;
+    width: 250px;
+    border-radius: 500px;
+    text-decoration: none;
+    outline-offset: -2px;
+    margin-top: 30px;
+    padding: 21px 56px 19px;
+    
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-family: "circ-bold";
+    letter-spacing: 1px;
+}
+
+.jumbo-cta-btn:hover{
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.12);
+}

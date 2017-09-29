@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+.customcolor{
+    background-color: rgba(0,0,0,0.8);
+}
+
+.login-signup-btn{
+    color:white;
+    font-family: "circ-bold";
+}
+
+.menu-btn{
+    font-family: "circ-bold";
+}
+
+.menu{
+    height:60px;
+}

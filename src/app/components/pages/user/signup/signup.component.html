@@ -1,0 +1,19 @@
+<app-minijumbo title="Sign Up"></app-minijumbo>
+
+<div class="container">
+    <div *ngIf="hasError" class="alert alert-danger signup-error">
+        {{ errorMessage }}
+    </div>
+
+    <flash-messages></flash-messages>
+
+    <form class="form-signup" (ngSubmit)="onSubmit()" #signupForm="ngForm">       
+        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" [(ngModel)]="model.username"/>
+        <input type="email" class="form-control" name="email" placeholder="Email" required="" [(ngModel)]="model.email"/>      
+        <input type="text" class="form-control" name="location" placeholder="Location" required="" [(ngModel)]="model.location"/>      
+        <input type="password" class="form-control" name="password" placeholder="Password" required="" [(ngModel)]="model.password"/>      
+        <button class="btn btn-lg btn-primary btn-block btn-rounded" type="submit">Sign Up</button>   
+    </form>
+</div>
+
+<app-footer></app-footer>

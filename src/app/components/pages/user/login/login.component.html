@@ -1,0 +1,20 @@
+<app-minijumbo title="Login"></app-minijumbo>
+
+<div class="container">
+  <div class="alert alert-danger login-message" *ngIf="hadError">
+    {{ errorMessage }}
+  </div>
+
+  <form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm">     
+    <h2 class="form-signin-heading">Please sign in</h2>
+
+    <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" [(ngModel)]="model.username"/>
+    <input type="password" class="form-control" name="password" placeholder="Password" required="" [(ngModel)]="model.password"/>      
+    <button class="btn btn-lg btn-primary btn-block btn-rounded login-button" type="submit">Login</button>   
+
+    <p class="signup-cta">Don't have an account? <a routerLink="/signup">Sign Up</a> </p>
+  </form>
+
+</div>
+
+<app-footer></app-footer>

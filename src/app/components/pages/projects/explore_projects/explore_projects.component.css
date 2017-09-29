@@ -1,0 +1,13 @@
+.projects{
+    margin-top: 80px;
+}
+
+.project{
+    margin-bottom: 60px;
+}
+
+.pagination{
+    text-align: center;
+    width: 200px;
+    margin: auto;
+}

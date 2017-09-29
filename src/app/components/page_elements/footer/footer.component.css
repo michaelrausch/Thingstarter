@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+
+.footer{
+    margin-top: 50px;
+    height: 70px;
+    width: 100%;
+
+    background-color: black;
+    color: white;
+
+    padding-right:50px;
+    padding-left:50px;
+
+}
+
+.footer-left{
+    text-align: left;
+    vertical-align: middle;
+    width:300px;
+    padding-top: 23px;
+    font-family: "circ-bold";
+    color: #919496;
+}

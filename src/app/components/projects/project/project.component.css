@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+.project-text{
+    font-family: "circ-bold";
+}
+
+.project-card-img{
+    height: 250px;
+}
+
+.project-card{
+    box-shadow: 10px 10px 80px rgba(0,0,0,0.2);
+    
+}
+.project-card-title{
+    font-family: "circ-black";
+}

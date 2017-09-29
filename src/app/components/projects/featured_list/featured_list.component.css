@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+.featured-projects{
+    margin-top: 50px;
+}
+
+.subhead{
+    color: black;
+    font-size: 42px;
+    font-weight: 900px;
+    line-height: 1.3;
+    font-family: "circ-black";
+    margin-left: -3px;
+    padding-left: 0;
+    padding-bottom: 20px;
+}
+
+.project{
+    margin-bottom: 60px;
+}
