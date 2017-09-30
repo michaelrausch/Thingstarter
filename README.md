@@ -1,4 +1,4 @@
-# T1
+# SENG365 Crowdfunding Frontend
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
