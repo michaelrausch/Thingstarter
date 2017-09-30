@@ -1,18 +1,50 @@
 <app-minijumbo title="Sign Up"></app-minijumbo>
 
 <div class="container">
-    <div *ngIf="hasError" class="alert alert-danger signup-error">
+    <div *ngIf="hasError" class="alert alert-danger form-message">
         {{ errorMessage }}
     </div>
 
-    <flash-messages></flash-messages>
+    <div *ngIf="wasSuccess" class="alert alert-success form-message">
+        Registered, logging in....
+    </div>
 
-    <form class="form-signup" (ngSubmit)="onSubmit()" #signupForm="ngForm">       
-        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" [(ngModel)]="model.username"/>
-        <input type="email" class="form-control" name="email" placeholder="Email" required="" [(ngModel)]="model.email"/>      
-        <input type="text" class="form-control" name="location" placeholder="Location" required="" [(ngModel)]="model.location"/>      
-        <input type="password" class="form-control" name="password" placeholder="Password" required="" [(ngModel)]="model.password"/>      
-        <button class="btn btn-lg btn-primary btn-block btn-rounded" type="submit">Sign Up</button>   
+    <form class="user-form" (ngSubmit)="onSubmit()" #signupForm="ngForm">   
+        <h2 class="form-heading">Create an account</h2>
+    
+        <div class="form-group">
+            <small *ngIf="username.errors && (username.dirty || username.touched)" class="text-muted">
+                <div *ngIf="username.errors.required">Username is required</div>
+            </small>
+        
+            <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" #username="ngModel" [(ngModel)]="model.username"/>
+        </div>
+
+        <div class="form-group">
+            <small *ngIf="email.errors && (email.dirty || email.touched)" class="text-muted">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email && !email.errors.required">Email must be a valid email address</div>
+            </small>
+
+            <input type="email" class="form-control" name="email" placeholder="Email" required="" #email="ngModel" email [(ngModel)]="model.email"/>      
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="location" placeholder="Location (optional)" #location="ngModel" [(ngModel)]="model.location"/>  
+        </div>
+
+
+        <div class="form-group">
+            <small *ngIf="password.errors && (password.dirty || password.touched)" class="text-muted">
+                <div *ngIf="password.errors.required">Password is required</div>
+            </small>
+
+            <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" required="" [(ngModel)]="model.password"/>      
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!signupForm.form.valid">Sign Up</button> 
+
+        <p class="form-cta">Already have an account? <a routerLink="/login">Login</a> </p>  
     </form>
 </div>
 

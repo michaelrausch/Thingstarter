@@ -18,4 +18,8 @@ export class MenuComponent implements OnInit {
     return this.loginService.isLoggedIn()
   }
 
+  doLogout(){
+    this.loginService.logout();
+  }
+
 }

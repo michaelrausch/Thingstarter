@@ -1,1 +1,121 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+/*
+    Alerts 
+
+    1. Danger
+    2. Success
+    3. Form Message
+*/
+
+.alert-danger {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+  color: #ffffff;
+}
+
+.alert-danger hr {
+  border-top-color: #e43725;
+}
+
+.alert-danger .alert-link {
+  color: #e6e6e6;
+}
+
+.alert-success {
+  background-color: #18bc9c;
+  border-color: #18bc9c;
+  color: #ffffff;
+}
+.alert-success hr {
+  border-top-color: #15a589;
+}
+.alert-success .alert-link {
+  color: #e6e6e6;
+}
+
+.form-message{
+    margin: 0 auto;
+    max-width: 480px;
+    margin-top: 60px;
+    margin-bottom: -50px;
+}
+
+/*
+    Buttons
+
+*/
+.btn-rounded{
+    border-radius: 500px;
+}
+
+.form-submit-button {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
+    margin-top: 20px;
+}
+
+.form-submit-button:hover {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
+}
+
+.form-submit-button:disabled {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
+}
+
+/*
+    Forms
+*/
+.user-form {
+  max-width: 480px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  margin-top:80px;
+  margin-bottom: 200px;
+}
+
+input[type="password"], input[type="email"], input[type="text"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-radius: 0;
+    font-family: "circ-bold";
+}
+
+.checkbox {
+    font-weight: normal;
+}
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 10px !important;
+    margin-top: 0px !important;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+.form-heading {
+    margin-bottom: 30px;
+}
+
+.form-cta {
+    max-width: 480px;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+

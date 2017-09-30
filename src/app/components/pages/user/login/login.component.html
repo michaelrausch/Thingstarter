@@ -1,19 +1,32 @@
 <app-minijumbo title="Login"></app-minijumbo>
 
 <div class="container">
-  <div class="alert alert-danger login-message" *ngIf="hadError">
-    {{ errorMessage }}
-  </div>
+    <div class="alert alert-danger form-message" *ngIf="hadError">
+        {{ errorMessage }}
+    </div>
 
-  <form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm">     
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <form class="user-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">     
+        <h2 class="form-heading">Please sign in</h2>
 
-    <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" [(ngModel)]="model.username"/>
-    <input type="password" class="form-control" name="password" placeholder="Password" required="" [(ngModel)]="model.password"/>      
-    <button class="btn btn-lg btn-primary btn-block btn-rounded login-button" type="submit">Login</button>   
+        <div class="form-group">
+            <small *ngIf="username.errors && (username.dirty || username.touched)" id="passwordHelpInline" class="text-muted">
+                <div [hidden]="!username.errors.required">Username is required</div>
+            </small>
 
-    <p class="signup-cta">Don't have an account? <a routerLink="/signup">Sign Up</a> </p>
-  </form>
+            <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" #username="ngModel" [(ngModel)]="model.username"/>
+        </div>
+
+        <div class="form-group">
+            <small *ngIf="password.errors && (password.dirty || password.touched)" id="passwordHelpInline" class="text-muted">
+                <div [hidden]="!password.errors.required">Password is required</div>
+            </small>
+
+            <input type="password" class="form-control" name="password" placeholder="Password" required="" #password="ngModel" [(ngModel)]="model.password"/>  
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!loginForm.form.valid">Login</button>   
+        <p class="form-cta">Don't have an account? <a routerLink="/signup">Sign Up</a> </p>
+    </form>
 
 </div>
 

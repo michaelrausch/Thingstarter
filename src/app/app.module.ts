@@ -26,6 +26,11 @@ import { ProjectComponent } from './components/projects/project/project.componen
 import { ExploreCtaComponent } from './components/page_elements/explore_cta/explore_cta.component';
 import { FooterComponent } from './components/page_elements/footer/footer.component';
 import { MiniJumboComponent } from './components/page_elements/minijumbo/minijumbo.component';
+import { FormComponent } from './components/pages/projects/create_project/form/form.component';
+import { BasicDetailsComponent } from './components/pages/projects/create_project/form/basic-details/basic-details.component';
+import { RewardsComponent } from './components/pages/projects/create_project/form/rewards/rewards.component';
+import { ImageUploadComponent } from './components/pages/projects/create_project/form/image-upload/image-upload.component';
+import { DoneComponent } from './components/pages/projects/create_project/form/done/done.component';
 
 import { AppComponent } from './app.component';
 
@@ -51,7 +56,7 @@ const appRoutes: Routes = [
     component: SignupPageComponent
   },
   {
-    path: 'startproject',
+    path: 'create',
     component: CreateProjectPageComponent
   },
   {
@@ -77,6 +82,11 @@ const appRoutes: Routes = [
     CreateProjectPageComponent,
     ViewProjectPageComponent,
     SignupPageComponent,
+    FormComponent,
+    BasicDetailsComponent,
+    RewardsComponent,
+    ImageUploadComponent,
+    DoneComponent,
   ],
   imports: [
     BrowserModule,

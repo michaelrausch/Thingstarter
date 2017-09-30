@@ -1,0 +1,6 @@
+<div [ngSwitch]="currentStep">
+  <app-create-project-basic-details *ngSwitchCase="BASICS"></app-create-project-basic-details>
+  <app-create-project-rewards *ngSwitchCase="REWARDS"></app-create-project-rewards>
+  <app-create-project-image-upload *ngSwitchCase="IMAGE"></app-create-project-image-upload>
+  <app-create-project-done *ngSwitchCase="DONE"></app-create-project-done>
+</div>

@@ -36,6 +36,9 @@ export class LoginPageComponent implements OnInit {
     switch(code){
       case 400:
         this.errorMessage = "Bad username / password combo";
+        break;
+      default:
+        this.errorMessage = "Error logging you in, please try again later";
     }
 
     this.hadError = true;

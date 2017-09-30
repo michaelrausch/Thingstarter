@@ -9,3 +9,9 @@ export interface UserDetailResponse {
   location: string;
   email: string;
 }
+
+export interface SignupResponse {
+    login: string;
+    bio: string;
+    company: string;
+}

@@ -16,34 +16,50 @@ export class SignupPageComponent implements OnInit {
     errorMessage: string = "";
     hasError: boolean = false;
     model: UserRegistration = new UserRegistration("", "", "", "");
+    wasSuccess: boolean = false;
 
-    constructor(private http: HttpClient, private router: Router, private loginService: LoginService, private flashMessagesService: FlashMessagesService) { }
+    constructor(private router: Router, private loginService: LoginService, private flashMessagesService: FlashMessagesService) { }
 
     ngOnInit() {
     }
 
-
-    doSignupRequest(){
-        this.http.post<SignupResponse>(environment.api_base_url + "users", this.model.asJson()).subscribe(data => {
-            this.signupSuccess();
+    onSubmit() { 
+        this.loginService.doSignup(this.model).subscribe(success => {
+            this.handleSignupSuccess();
         },
-        err => {
-            this.signupError(err.status);
+        error => {
+            this.handleSignupError(error.status);
         });
     }
 
-    onSubmit() { 
-        this.doSignupRequest();
+    /**
+     * The user was successfully signed up
+     */
+    handleSignupSuccess(){
+        this.wasSuccess = true; // Display signup success box
+
+        this.loginService.login(this.model.username, this.model.password)
+            .subscribe(data => {
+                this.router.navigate(['./']);
+            },
+            error => {
+                this.router.navigate(['./login']);
+            })
     }
 
-    signupSuccess(){
-        this.flashMessagesService.show("You have been registered, Logging in...", { cssClass: 'alert-success signup-error'});
-    }
-
-    signupError(errorCode: number){
+    /**
+     * There was an error signing the user up
+     * @param errorCode 
+     */
+    handleSignupError(errorCode: number){
         switch(errorCode){
-            case 400:
-            this.errorMessage = "Could not register your user, this user may already exist";
+            case 400: // Bad request
+                this.errorMessage = "Could not register your user, this user may already exist";
+                break;
+
+            default:
+                this.errorMessage = "Error creating user";
+
         }
 
         this.hasError = true;
@@ -51,8 +67,3 @@ export class SignupPageComponent implements OnInit {
 
 }
 
-interface SignupResponse {
-    login: string;
-    bio: string;
-    company: string;
-}
