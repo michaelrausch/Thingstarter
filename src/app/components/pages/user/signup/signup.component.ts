@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserRegistration } from '../../../../models/forms/UserRegistration';
 import { environment } from '../../../../../environments/environment';
 import { LoginService } from '../../../../services/login.service';
-import { LoginResponse } from '../login/login.component';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { LoginResponse } from "app/services/responses/UserResponses";
 
 @Component({
 selector: 'app-signup-page',
@@ -38,7 +38,6 @@ export class SignupPageComponent implements OnInit {
 
     signupSuccess(){
         this.flashMessagesService.show("You have been registered, Logging in...", { cssClass: 'alert-success signup-error'});
-        this.doLogin();
     }
 
     signupError(errorCode: number){
@@ -50,15 +49,6 @@ export class SignupPageComponent implements OnInit {
         this.hasError = true;
     }
 
-    doLogin(){
-        this.http.post<LoginResponse>(environment.api_base_url + "users/login?username=" + this.model.username + "&password=" + this.model.password, {}).subscribe(data => {
-            this.loginService.login(data.id, data.token);
-            this.router.navigate(['./']);
-        },
-        error => {
-            this.router.navigate(['./login']);
-        });
-    }
 }
 
 interface SignupResponse {

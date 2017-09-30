@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../../services/login.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserLogin } from '../../../../models/forms/UserLogin';
 
@@ -16,7 +15,6 @@ export class LoginPageComponent implements OnInit {
   model: UserLogin = new UserLogin("","");
 
   constructor(private loginService: LoginService, 
-              private http: HttpClient, 
               private router: Router,
               ) { }
 
@@ -25,13 +23,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(){
-    this.http.post<LoginResponse>("http://db.sydney.michaelrausch.nz:4941/api/v2/users/login?username=" + this.model.username + "&password=" + this.model.password, {}).subscribe(data => {
-      this.loginService.login(data.id, data.token);
-      this.router.navigate(['./']);
-    },
-    error => {
-      this.handleError(error.status);
-    });
+    this.loginService.login(this.model.username, this.model.password)
+        .subscribe(success => {
+            this.router.navigate(['./']);
+        },
+        error => {
+            this.handleError(error.status);
+        })
   }
 
   handleError(code: number){
@@ -42,9 +40,4 @@ export class LoginPageComponent implements OnInit {
 
     this.hadError = true;
   }
-}
-
-export interface LoginResponse {
-  id: number;
-  token: string;
 }
