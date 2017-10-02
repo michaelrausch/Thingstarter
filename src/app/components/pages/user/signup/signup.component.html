@@ -1,7 +1,7 @@
 <app-minijumbo title="Sign Up"></app-minijumbo>
 
 <div class="container">
-    <div *ngIf="hasError" class="alert alert-danger form-message">
+    <div *ngIf="hasError && !wasSuccess" class="alert alert-danger form-message">
         {{ errorMessage }}
     </div>
 

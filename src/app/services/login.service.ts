@@ -143,7 +143,13 @@ export class LoginService {
      * Perform a logout request for the currently logged in user
      */
     private doLogoutRequest(){
-        this.http.post(environment.api_base_url + "users/logout", {}, { headers: this.getAuthHeaders() });
+        this.http.post(environment.api_base_url + "users/logout", {}, { headers: this.getAuthHeaders() })
+            .subscribe(data => {
+                this.removeSession();
+            },
+            err => {
+                this.removeSession();
+            });
     }
 
     /**
@@ -151,6 +157,6 @@ export class LoginService {
      */
     logout(){
         this.doLogoutRequest();
-        this.removeSession();
+        //this.removeSession();
     }
 }

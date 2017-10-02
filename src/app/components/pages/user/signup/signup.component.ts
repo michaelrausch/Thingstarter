@@ -14,7 +14,7 @@ styleUrls: ['./signup.component.css']
 })
 export class SignupPageComponent implements OnInit {
     errorMessage: string = "";
-    hasError: boolean = false;
+    hasError: boolean = false
     model: UserRegistration = new UserRegistration("", "", "", "");
     wasSuccess: boolean = false;
 
@@ -59,7 +59,6 @@ export class SignupPageComponent implements OnInit {
 
             default:
                 this.errorMessage = "Error creating user";
-
         }
 
         this.hasError = true;
