@@ -1,4 +1,3 @@
-<span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
 export class Project {
     public id: number;
     public title: string;
@@ -8,8 +7,8 @@ export class Project {
     public open: boolean;
     public target: number;
 
-    public creators: Creator[];
-    public rewards: Reward[];
-    public progress: Progress;
-    public backers: Backer[];
+    //public creators: Creator[];
+    //public rewards: Reward[];
+    //public progress: Progress;
+    //public backers: Backer[];
 }
