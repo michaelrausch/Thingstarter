@@ -38,6 +38,7 @@ import { AppComponent } from './app.component';
  * Services 
  */
 import { LoginService } from './services/login.service';
+import { ProjectService } from './services/project.service';
 
 const appRoutes: Routes = [
   { path: '',
@@ -96,7 +97,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FlashMessagesModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

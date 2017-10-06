@@ -24,7 +24,10 @@
             <input type="password" class="form-control" name="password" placeholder="Password" required="" #password="ngModel" [(ngModel)]="model.password"/>  
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!loginForm.form.valid">Login</button>   
+        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!loginForm.form.valid">
+            Login
+            <span *ngIf="isLoggingIn"><i class="fa fa-spinner fa-pulse"></i></span>            
+        </button>   
         <p class="form-cta">Don't have an account? <a routerLink="/signup">Sign Up</a> </p>
     </form>
 

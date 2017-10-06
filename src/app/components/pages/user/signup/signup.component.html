@@ -42,7 +42,10 @@
             <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" required="" [(ngModel)]="model.password"/>      
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!signupForm.form.valid">Sign Up</button> 
+        <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" type="submit" [disabled]="!signupForm.form.valid">
+            Sign Up
+            <span *ngIf="isSigningUp"><i class="fa fa-spinner fa-pulse"></i></span>                        
+        </button> 
 
         <p class="form-cta">Already have an account? <a routerLink="/login">Login</a> </p>  
     </form>

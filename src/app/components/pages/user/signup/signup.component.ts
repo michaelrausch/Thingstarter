@@ -17,6 +17,7 @@ export class SignupPageComponent implements OnInit {
     hasError: boolean = false
     model: UserRegistration = new UserRegistration("", "", "", "");
     wasSuccess: boolean = false;
+    isSigningUp: boolean = false;
 
     constructor(private router: Router, private loginService: LoginService, private flashMessagesService: FlashMessagesService) { }
 
@@ -24,10 +25,13 @@ export class SignupPageComponent implements OnInit {
     }
 
     onSubmit() { 
+        this.isSigningUp = true;
+
         this.loginService.doSignup(this.model).subscribe(success => {
             this.handleSignupSuccess();
         },
         error => {
+            this.isSigningUp = false;
             this.handleSignupError(error.status);
         });
     }
@@ -40,9 +44,11 @@ export class SignupPageComponent implements OnInit {
 
         this.loginService.login(this.model.username, this.model.password)
             .subscribe(data => {
+                this.isSigningUp = false;                
                 this.router.navigate(['./']);
             },
             error => {
+                this.isSigningUp = false;                
                 this.router.navigate(['./login']);
             })
     }

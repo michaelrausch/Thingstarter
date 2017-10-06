@@ -11,6 +11,7 @@ import { UserLogin } from '../../../../models/forms/UserLogin';
 export class LoginPageComponent implements OnInit {
   hadError: boolean = false;
   errorMessage: string = "";
+  isLoggingIn: boolean = false;
 
   model: UserLogin = new UserLogin("","");
 
@@ -23,11 +24,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(){
+    this.isLoggingIn = true;
+
     this.loginService.login(this.model.username, this.model.password)
         .subscribe(success => {
+            this.isLoggingIn = false;          
             this.router.navigate(['./']);
         },
         error => {
+            this.isLoggingIn = false;
             this.handleError(error.status);
         })
   }
