@@ -6,8 +6,12 @@
     margin-bottom: 60px;
 }
 
-.pagination{
+.project-list-result{
     text-align: center;
-    width: 200px;
+    width: 400px;
     margin: auto;
+}
+
+.project-end-reached{
+    color: gray;
 }

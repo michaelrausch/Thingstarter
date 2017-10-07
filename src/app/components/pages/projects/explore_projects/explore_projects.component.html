@@ -2,35 +2,16 @@
 
 <div class="container projects">
     <div class="row">
-    <div class="col-md-4 project">
-        <app-project [title]="asdasdasdasd"></app-project>
+        <div class="col-md-4 project" *ngFor="let project of projectService.getProjectBriefs()" infiniteScroll 
+            [infiniteScrollDistance]="0" 
+            [infiniteScrollThrottle]="1500"
+            (scrolled)="scrolledDown()">
+            <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}"></app-project>
+        </div> 
     </div>
-
-    <div class="col-md-4 project">
-        <app-project></app-project>
-    </div>
-
-    <div class="col-md-4 project">
-        <app-project></app-project>
-    </div>    
-  </div>
-
-  <div class="row">
-    <div class="col-md-4 project">
-        <app-project></app-project>
-    </div>
-
-    <div class="col-md-4 project">
-        <app-project></app-project>
-    </div>
-
-    <div class="col-md-4 project">
-        <app-project></app-project>
-    </div>    
-  </div>
 </div>
 
-<nav>
+<!--<nav>
   <ul class="pagination">
     <li class="page-item"><a class="page-link">Previous</a></li>
     <li class="page-item"><a class="page-link">1</a></li>
@@ -38,6 +19,12 @@
     <li class="page-item"><a class="page-link">3</a></li>
     <li class="page-item"><a class="page-link">Next</a></li>
   </ul>
-</nav>
+</nav>-->
+
+<div class="project-list-result">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached()"></i>
+    <p class="project-end-reached" *ngIf="projectService.endOfProjectsReached()">There are no more projects left <i class="fa fa-frown-o" aria-hidden="true"></i>
+</p>
+</div>
 
 <app-footer></app-footer>

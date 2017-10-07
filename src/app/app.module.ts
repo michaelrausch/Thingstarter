@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 /*
  * Pages
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    InfiniteScrollModule
   ],
   providers: [LoginService, ProjectService],
   bootstrap: [AppComponent]
