@@ -1,10 +1,11 @@
 {
   "name": "seng365-crowdfunding-app",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
+    "serve": "ng serve",
     "start": "http-server dist/",
     "heroku-prebuild": "npm install -g http-server angular-cli",
     "heroku-postbuild": "ng build",
@@ -34,7 +35,7 @@
     "@angular/compiler-cli": "4.4.4",
     "@types/jasmine": "2.6.0",
     "@types/node": "8.0.31",
-    "angular-cli": "1.0.0-beta.28.3",
+    "@angular/cli": "1.4.5",
     "codelyzer": "3.2.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -46,6 +47,6 @@
     "protractor": "5.1.2",
     "ts-node": "3.3.0",
     "tslint": "5.7.0",
-    "typescript": "2.5.3"
+    "typescript": "2.3.4"
   }
 }
