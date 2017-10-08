@@ -1,0 +1,53 @@
+.container {
+    padding-top: 50px;
+}
+
+.projectImage{
+    height: 400px;
+}
+
+.projectSubtitle{
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    font-weight: 900;
+    font-family: "circ-black";
+    color: #5C5C5C;
+}
+
+.projectDescription{
+    color: #3F3F3F;
+    
+}
+
+.rewards{
+    padding-right: 0;
+}
+
+.rewardContainer{
+    width: 400px;
+    float: right;
+}
+
+.pledged #amtPledged{
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 0px;
+    color: #05AF3C;
+}
+
+.pledged #goal{
+    margin-top: 0px;
+    font-size: 15px;
+    color: #626369;
+}
+
+.progress{
+    height: 5px;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.progress-bar{
+    background-color: #05AF3C;
+}

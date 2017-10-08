@@ -14,6 +14,6 @@
     <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/login">Login</a>
     <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/signup">Signup</a>
 
-    <a *ngIf="isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" href="#" (click)="doLogout()">Logout</a>
+    <a *ngIf="isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" href="#" (click)="doLogout()">Logout, {{ loginService.userData.username }}</a>
   </div>
 </nav>

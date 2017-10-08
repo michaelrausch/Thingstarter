@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "circ-black";
+    src: url('/assets/fonts/cb.woff2') format("woff");
+}
+
+@font-face {
+    font-family: "circ-bold";
+    src: url('/assets/fonts/cbo.woff2') format("woff");
+}
+
+#jumbo{
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    width: 100%;
+    height: 170px;
+
+    box-shadow: 10px 10px 120px rgba(0,0,0,0.40);
+}
+
+#jumbo-content{
+    padding-top: 92px;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.jumbo-header{
+    color: white;
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    font-weight: 900;
+    font-family: "circ-black";
+}

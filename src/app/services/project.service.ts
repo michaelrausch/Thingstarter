@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ProjectBrief } from "app/services/responses/ProjectBrief";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from "environments/environment";
+import { Observable } from 'rxjs/Observable';
+import { Project } from 'app/services/responses/projects/Project';
+import { ProjectBrief } from 'app/services/responses/projects/ProjectBrief';
 
 @Injectable()
 export class ProjectService {
@@ -103,5 +105,22 @@ export class ProjectService {
      */
     public endOfProjectsReached(){
         return this.reachedEnd;
+    }
+
+    public getProject(id: number){
+        return new Observable(observer => {
+            this.http.get<Project>(environment.api_base_url + "projects/" + id)
+                .subscribe(data => {
+                    data.imageUri = environment.api_base_url + data.imageUri;
+
+                    //TODO: Remove when pledges are added
+                    data.progress.currentPledged += 42069;
+                    
+                    observer.next(data);
+                },
+                error =>{
+                    observer.next(error.error);
+                })
+        });
     }
 }

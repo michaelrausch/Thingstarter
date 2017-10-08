@@ -1,4 +1,4 @@
-<app-minijumbo title="Explore"></app-minijumbo>
+<app-page-head-small title="Explore" ></app-page-head-small>
 
 <div class="container projects">
     <div class="row">
@@ -6,20 +6,10 @@
             [infiniteScrollDistance]="0" 
             [infiniteScrollThrottle]="1500"
             (scrolled)="scrolledDown()">
-            <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}"></app-project>
+            <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}" id="{{project.id}}"></app-project>
         </div> 
     </div>
 </div>
-
-<!--<nav>
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link">Previous</a></li>
-    <li class="page-item"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">Next</a></li>
-  </ul>
-</nav>-->
 
 <div class="project-list-result">
     <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached()"></i>

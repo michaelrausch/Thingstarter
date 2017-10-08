@@ -5,7 +5,6 @@ import { UserRegistration } from '../../../../models/forms/UserRegistration';
 import { environment } from '../../../../../environments/environment';
 import { LoginService } from '../../../../services/login.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { LoginResponse } from "app/services/responses/UserResponses";
 
 @Component({
 selector: 'app-signup-page',

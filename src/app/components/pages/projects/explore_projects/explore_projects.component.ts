@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from "app/services/project.service";
-import { ProjectBrief } from "app/services/responses/ProjectBrief";
 
 @Component({
   selector: 'app-explore-projects-page',

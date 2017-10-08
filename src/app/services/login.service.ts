@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
-import { LoginResponse, UserDetailResponse, SignupResponse } from "app/services/responses/UserResponses";
+import { LoginResponse, UserDetailResponse, SignupResponse } from "app/services/responses/user/UserResponses";
 import { environment } from "environments/environment";
 import { UserRegistration } from "app/models/forms/UserRegistration";
 

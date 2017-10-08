@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-4 project" *ngFor="let project of projectService.getFeaturedProjects()">
-        <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}"></app-project>
+        <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}" id="{{project.id}}"></app-project>
     </div> 
   </div>
 

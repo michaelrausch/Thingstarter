@@ -1,1 +1,54 @@
-<app-minijumbo title="Project"></app-minijumbo>
+<div *ngIf="project != undefined">
+
+    <app-page-head-small title="{{project.title}}" *ngIf="project != undefined" ></app-page-head-small>
+    
+    <div class="container">
+        <div class="row">
+                <img src="{{project.imageUri}}" class="projectImage col-md-6"/>
+                <div class="col-md-6">
+                    <p class="projectSubtitle">{{project.subtitle}}</p>    
+                    
+                    <p class="projectDescription">
+                        {{project.description}}
+                    </p>
+                </div>
+        </div>
+        <br><br><br>
+        <div class="row">
+            <div class="currentProgress col-md-6" >
+                    <div class="progress" style="width: 100%;">
+                        <div class="progress-bar" [ngStyle]="{width:project.progress.currentPledged/project.target | percent:'1.0-1'}" attr.aria-valuemin="0" attr.aria-valuemax="{{project.target}}" attr.aria-valuenow="{{project.progress.currentPledged}}"></div>
+                    </div>
+
+                    <div class="pledged">
+                        <p id="amtPledged">${{project.progress.currentPledged / 100}}</p>
+                        <p id="goal">pledged of ${{project.target / 100}} goal</p>
+                    </div>
+            </div>
+
+            <div class="col-md-6 rewards">
+                <div class="rewardContainer">
+                    <app-reward isCustomPledge=true description="Custom Pledge"></app-reward>
+                </div>
+        
+                <div class="rewardContainer" *ngFor="let reward of project.rewards">
+                    <app-reward amount="{{reward.amount}}" description="{{reward.description}}"></app-reward>
+                </div>
+            </div>
+            
+        </div>
+       
+        
+
+
+
+
+
+
+    </div>
+
+    
+    
+    <app-footer></app-footer>
+</div>
+

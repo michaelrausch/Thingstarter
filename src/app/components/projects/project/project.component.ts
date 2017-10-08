@@ -9,6 +9,7 @@ export class ProjectComponent implements OnInit {
   @Input() title;
   @Input() subtitle;
   @Input() imageUri;
+  @Input() id;
 
   constructor() { }
 

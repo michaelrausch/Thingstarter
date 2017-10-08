@@ -1,0 +1,23 @@
+<div class="reward">
+  <p class="rewardTitle" *ngIf="!isCustomPledge">
+    Pledge ${{amount / 100}} or more
+  </p>
+
+  <p class="rewardTitle" *ngIf="isCustomPledge">
+    {{description}}
+  </p>
+
+  <p class="rewardDescription" *ngIf="!isCustomPledge">
+    {{description}}
+  </p>
+
+  <div *ngIf="isCustomPledge">
+    <input type="text" placeholder="$">
+    <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" id="hibtn">Pledge</button>
+  </div>
+
+  <div class="overlay" *ngIf="!isCustomPledge" (click)="clicked()">
+    <div class="text">Select This Reward</div>
+  </div>
+  
+</div>
