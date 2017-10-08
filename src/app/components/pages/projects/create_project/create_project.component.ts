@@ -13,9 +13,10 @@ export class CreateProjectPageComponent implements OnInit {
 
   ngOnInit() {
     if (!this.loginService.isLoggedIn()){
-      this.router.navigate(['./login']);
-      console.log("Ho");
+      this.loginService.setPostLoginRedirect('./create');
+      this.loginService.redirectToLogin();
     }
+  
   }
 
 }

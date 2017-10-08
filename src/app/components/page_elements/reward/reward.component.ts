@@ -17,7 +17,7 @@ export class RewardComponent implements OnInit {
   }
 
   clicked(){
-    alert("I would charge you some $$$ now")
+    
   }
 
 }

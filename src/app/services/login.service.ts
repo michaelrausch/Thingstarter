@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { LoginResponse, UserDetailResponse, SignupResponse } from "app/services/responses/user/UserResponses";
 import { environment } from "environments/environment";
 import { UserRegistration } from "app/models/forms/UserRegistration";
+import { Router } from "@angular/router";
 
 /**
  * Keep track of currently logged in user
@@ -15,7 +16,7 @@ export class LoginService {
     token: string = "";
     userData: UserDetailResponse;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         let token = localStorage.getItem("loginToken");
         let userId = localStorage.getItem("userId");
 
@@ -46,6 +47,7 @@ export class LoginService {
                 .subscribe(data => {
                     this.handleLoginSuccess(data);
                     observer.next();
+                    this.doPostLoginRedirect();
                 },
                 err => {
                     observer.error(err);
@@ -158,5 +160,30 @@ export class LoginService {
     logout(){
         this.doLogoutRequest();
         //this.removeSession();
+    }
+
+    /**
+     * Redirect to the route stored in postLoginRedirect if it is set
+     */
+    private doPostLoginRedirect(){
+        if (this.isLoggedIn() && localStorage.getItem("postLoginRedirect")){
+            this.router.navigate([localStorage.getItem('postLoginRedirect')]);
+            localStorage.setItem("postLoginRedirect", undefined);
+        }
+    }
+
+    /**
+     * Set the page to redirect to after a successful login
+     * @param route The route to redirect to
+     */
+    setPostLoginRedirect(route: string){
+        localStorage.setItem("postLoginRedirect", route);
+    }
+
+    /**
+     * Redirect to the login page
+     */
+    redirectToLogin(){
+        this.router.navigate(['./login']);
     }
 }

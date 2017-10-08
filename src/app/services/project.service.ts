@@ -4,6 +4,9 @@ import { environment } from "environments/environment";
 import { Observable } from 'rxjs/Observable';
 import { Project } from 'app/services/responses/projects/Project';
 import { ProjectBrief } from 'app/services/responses/projects/ProjectBrief';
+import { Router } from "@angular/router";
+import { LoginService } from "app/services/login.service";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class ProjectService {
@@ -16,7 +19,7 @@ export class ProjectService {
     private startAmount: number = 6;
     private reachedEnd: boolean = false;
 
-    constructor(private http: HttpClient) { 
+    constructor(private http: HttpClient, private router: Router) { 
         this.loadInitialProjects();
     }
 
@@ -123,4 +126,45 @@ export class ProjectService {
                 })
         });
     }
+
+    public startPledgeToProject(id: number){
+        this.router.navigate(['./project/' + id + '/pledge']);
+    }
+
+    public pledge(id: number, amount: number, isAnon: boolean, token: string){
+        return new Observable(observer => {
+            if (!localStorage.getItem("loginToken")) return observer.error({
+                error: "Not logged in",
+                status: 401
+            });
+            console.log({id: id,
+                amount: amount,
+                anonymous: isAnon,
+                card: {
+                    authToken: token
+                }});
+            this.http.post(environment.api_base_url + "projects/" + id + "/pledge", {
+                id: id,
+                amount: amount,
+                anonymous: isAnon,
+                card: {
+                    authToken: token.toString()
+                }
+            },
+            {
+                headers: new HttpHeaders().append('X-Authorization', localStorage.getItem('loginToken'))
+            })
+            .subscribe(data => {
+                observer.next();
+            },
+            error => {
+                console.log(error);
+                observer.error({
+                    error: error.error,
+                    status: error.status
+                })
+            })
+        });
+    }
 }
+

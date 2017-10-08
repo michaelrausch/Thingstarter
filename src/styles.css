@@ -43,6 +43,10 @@
   color: #e6e6e6;
 }
 
+.alert-left-align{
+    margin-left: 0 !important;
+}
+
 .form-message{
     margin: 0 auto;
     max-width: 480px;
@@ -85,6 +89,11 @@
   margin-bottom: 200px;
 }
 
+.left-aligned-form{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
 input[type="password"], input[type="email"], input[type="text"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
@@ -118,6 +127,20 @@ input[type="password"], input[type="email"], input[type="text"] {
     padding-top: 20px;
 }
 
+.input-group-addon{
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-radius: 0;
+    font-family: "circ-bold";
+        position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 10px !important;
+    margin-top: 0px !important;
+    border: 1px solid rgba(0,0,0,0.3);
+}
 /*
     Effects 
 */
@@ -144,4 +167,13 @@ input[type="password"], input[type="email"], input[type="text"] {
     -webkit-transform: scale(1.04);
     transform: scale(1.04);
 
+}
+
+.btn-square{
+    border-radius: 0;
+    width: 180px;
+}
+
+#plege_amount_fi{
+    width: 300px;
 }

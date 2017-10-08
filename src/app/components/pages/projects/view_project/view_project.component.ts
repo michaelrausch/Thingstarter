@@ -30,4 +30,8 @@ export class ViewProjectPageComponent implements OnInit {
       });
   }
 
+  private pledgeClicked(){
+    this.projectService.startPledgeToProject(this.project.id);
+  }
+
 }

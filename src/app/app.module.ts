@@ -33,6 +33,8 @@ import { RewardsComponent } from './components/pages/projects/create_project/for
 import { ImageUploadComponent } from './components/pages/projects/create_project/form/image-upload/image-upload.component';
 import { DoneComponent } from './components/pages/projects/create_project/form/done/done.component';
 import { PageHeadSmallComponent } from './components/page_elements/page_head_small/page_head_small.component';
+import { RewardComponent } from './components/page_elements/reward/reward.component';
+import { PledgeComponent } from './components/pages/pledge/pledge.component';
 
 import { AppComponent } from './app.component';
 
@@ -41,7 +43,6 @@ import { AppComponent } from './app.component';
  */
 import { LoginService } from './services/login.service';
 import { ProjectService } from './services/project.service';
-import { RewardComponent } from './components/page_elements/reward/reward.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -66,6 +67,10 @@ const appRoutes: Routes = [
   {
     path: 'project/:id',
     component: ViewProjectPageComponent
+  },
+  {
+    path: 'project/:id/pledge',
+    component: PledgeComponent
   }
 ];
 
@@ -92,7 +97,8 @@ const appRoutes: Routes = [
     ImageUploadComponent,
     DoneComponent,
     PageHeadSmallComponent,
-    RewardComponent
+    RewardComponent,
+    PledgeComponent
   ],
   imports: [
     BrowserModule,
