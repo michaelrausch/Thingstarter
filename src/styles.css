@@ -117,3 +117,31 @@ input[type="password"], input[type="email"], input[type="text"] {
     text-align: center;
     padding-top: 20px;
 }
+
+/*
+    Effects 
+*/
+.hvr-bounce-in {
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.hvr-bounce-in:hover, .hvr-bounce-in:focus, .hvr-bounce-in:active {
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+.bounce-med:hover{
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+
+}
+
+.bounce-light:hover{
+    -webkit-transform: scale(1.04);
+    transform: scale(1.04);
+
+}
