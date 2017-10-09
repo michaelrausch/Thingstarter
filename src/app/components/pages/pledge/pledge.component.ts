@@ -18,6 +18,8 @@ export class PledgeComponent implements OnInit {
   isProcessing: boolean = false;
   projectId: string;
 
+  pledgeAmount: number = 0;
+
   constructor(private route: ActivatedRoute, private loginService: LoginService, private router: Router, private projectService: ProjectService) { }
 
   ngOnInit() {
@@ -38,6 +40,8 @@ export class PledgeComponent implements OnInit {
 
   submitForm(){
     this.isProcessing = true;
+    console.log(this.pledgeAmount);
+    if (this.pledgeAmount || !this.pledgeAmount) return;
 
     this.stripe.createToken(this.card).then(result => {
       if (result.error) {
@@ -56,7 +60,7 @@ export class PledgeComponent implements OnInit {
   }
 
   private processTransactionResult(token: string){
-    this.projectService.pledge(12, 4209, false, token).subscribe(() =>{
+    this.projectService.pledge(1, this.loginService.userId, 42069, false, token).subscribe(() =>{
       this.router.navigate(['./project/' + this.projectId]);
     }, error =>{
       this.hadError = true;

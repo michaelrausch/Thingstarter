@@ -116,8 +116,7 @@ export class ProjectService {
                 .subscribe(data => {
                     data.imageUri = environment.api_base_url + data.imageUri;
 
-                    //TODO: Remove when pledges are added
-                    data.progress.currentPledged += 42069;
+                    // data.progress.currentPledged += 42069;
                     
                     observer.next(data);
                 },
@@ -131,20 +130,14 @@ export class ProjectService {
         this.router.navigate(['./project/' + id + '/pledge']);
     }
 
-    public pledge(id: number, amount: number, isAnon: boolean, token: string){
+    public pledge(id: number, userId: number, amount: number, isAnon: boolean, token: string){
         return new Observable(observer => {
             if (!localStorage.getItem("loginToken")) return observer.error({
                 error: "Not logged in",
                 status: 401
             });
-            console.log({id: id,
-                amount: amount,
-                anonymous: isAnon,
-                card: {
-                    authToken: token
-                }});
             this.http.post(environment.api_base_url + "projects/" + id + "/pledge", {
-                id: id,
+                id: userId,
                 amount: amount,
                 anonymous: isAnon,
                 card: {

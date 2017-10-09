@@ -9,13 +9,13 @@
       {{ resultMessage }}
   </div>
 
-  <form class="user-form left-aligned-form" (ngSubmit)="submitForm()">     
+  <form class="user-form left-aligned-form" (ngSubmit)="submitForm()" #pledgeForm="ngForm">     
     <h2 class="form-heading">Pledge Confirmation</h2>
 
     <div class="form-group">
       <div class="input-group mb-2 mr-sm-2 mb-sm-0" id="plege_amount_fi">
         <div class="input-group-addon">Pledge Amount $</div>
-        <input type="text" class="form-control">
+        <input name="pledgeAmount" type="text" class="form-control"  [(ngModel)]="pledgeAmount">
       </div>
     </div>
 
