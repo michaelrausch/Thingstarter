@@ -41,7 +41,6 @@ export class PledgeComponent implements OnInit {
   submitForm(){
     this.isProcessing = true;
     console.log(this.pledgeAmount);
-    if (this.pledgeAmount || !this.pledgeAmount) return;
 
     this.stripe.createToken(this.card).then(result => {
       if (result.error) {
