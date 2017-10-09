@@ -115,8 +115,6 @@ export class ProjectService {
             this.http.get<Project>(environment.api_base_url + "projects/" + id)
                 .subscribe(data => {
                     data.imageUri = environment.api_base_url + data.imageUri;
-
-                    // data.progress.currentPledged += 42069;
                     
                     observer.next(data);
                 },
@@ -158,6 +156,16 @@ export class ProjectService {
                 })
             })
         });
+    }
+
+    public setPledgeAmount(pledgeAmount: number){
+        localStorage.setItem("pledgeAmount", pledgeAmount.toString());
+    }
+
+    public getPledgeAmount(){
+        var pledgeAmount = localStorage.getItem("pledgeAmount");
+        localStorage.setItem("pledgeAmount", undefined);
+        return +pledgeAmount;
     }
 }
 

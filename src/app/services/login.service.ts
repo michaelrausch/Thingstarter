@@ -159,7 +159,7 @@ export class LoginService {
      */
     logout(){
         this.doLogoutRequest();
-        //this.removeSession();
+        this.removeSession();
     }
 
     /**

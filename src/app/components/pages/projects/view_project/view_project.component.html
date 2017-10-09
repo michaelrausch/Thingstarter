@@ -27,11 +27,7 @@
             </div>
 
             <div class="col-md-6 rewards">
-                <div class="rewardContainer">
-                    <app-reward isCustomPledge=true description="Custom Pledge"></app-reward>
-                </div>
-        
-                <div class="rewardContainer" *ngFor="let reward of project.rewards" (click)="pledgeClicked()">
+                <div class="rewardContainer" *ngFor="let reward of project.rewards" (click)="pledgeClicked(reward.amount)">
                     <app-reward amount="{{reward.amount}}" description="{{reward.description}}"></app-reward>
                 </div>
             </div>

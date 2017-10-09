@@ -30,8 +30,9 @@ export class ViewProjectPageComponent implements OnInit {
       });
   }
 
-  private pledgeClicked(){
+  private pledgeClicked(amount: number){
+    console.log(amount);
+    this.projectService.setPledgeAmount(amount);
     this.projectService.startPledgeToProject(this.project.id);
   }
-
 }
