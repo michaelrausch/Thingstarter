@@ -1,11 +1,11 @@
 <app-page-head-small title="Start Pledge"></app-page-head-small>
 
 <div class="container">
-  <div *ngIf="hadError" class="alert alert-danger form-message alert-left-align">
+  <div *ngIf="showMessage && wasError" class="alert alert-danger form-message alert-left-align">
       {{ resultMessage }}
   </div>
 
-  <div *ngIf="wasSuccessful" class="alert alert-success form-message alert-left-align">
+  <div *ngIf="showMessage && !wasError" class="alert alert-success form-message alert-left-align">
       {{ resultMessage }}
   </div>
 

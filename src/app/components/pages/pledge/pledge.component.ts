@@ -12,8 +12,8 @@ export class PledgeComponent implements OnInit {
   stripe = (<any>window).Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
   card;
 
-  wasSuccessful: boolean = false;
-  hadError: boolean = false;
+  wasError: boolean = false;
+  showMessage: boolean = false;
   resultMessage: string = "";
   isProcessing: boolean = false;
   projectId: string;
@@ -49,21 +49,20 @@ export class PledgeComponent implements OnInit {
 
   submitForm(){
     this.isProcessing = true;
-    console.log(this.pledgeAmount);
-    console.log(this.isAnon);
-    
+
+    if (this.pledgeAmount < 0){
+      this.isProcessing = false;
+      return this.showError("You must enter a positive pledge amount");
+    }
 
     this.stripe.createToken(this.card).then(result => {
+      this.isProcessing = false;
+
       if (result.error) {
-        this.resultMessage = "Transaction Declined";
-        this.hadError = true;
-        this.wasSuccessful = false;
-        this.isProcessing = false;
+        return this.showError("Transaction declined");
       } else {
-        this.wasSuccessful = true;
-        this.hadError = false;
-        this.resultMessage = "Transaction Accepted";
         this.processTransactionResult(result.token.id);
+        return this.showSuccess("Transaction Accepted")
       }
     });
 
@@ -76,11 +75,22 @@ export class PledgeComponent implements OnInit {
     this.projectService.pledge(+this.projectId, this.loginService.userId, this.pledgeAmount * 100, this.isAnon, token).subscribe(() =>{
       this.router.navigate(['./project/' + this.projectId]);
     }, error =>{
-      this.hadError = true;
-      this.wasSuccessful = false;
-      this.resultMessage = error.error;
+      this.showError(error.error);
       this.isProcessing = false;
     });
+  }
+
+  private showError(message: string){
+    this.showMessage = true;
+    this.wasError = true;
+    this.resultMessage = message;
+
+  }
+
+  private showSuccess(message: string){
+    this.showMessage = true;
+    this.wasError = false;
+    this.resultMessage = message;
   }
 
 }
