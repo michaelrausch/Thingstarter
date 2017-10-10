@@ -164,7 +164,6 @@ export class ProjectService {
 
     public getPledgeAmount(){
         var pledgeAmount = localStorage.getItem("pledgeAmount");
-        localStorage.setItem("pledgeAmount", undefined);
         return +pledgeAmount;
     }
 }
