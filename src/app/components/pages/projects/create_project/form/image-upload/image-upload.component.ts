@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from "app/services/project.service";
-import { ProjectCreationFormService } from "app/services/project-creation-form.service";
+import { ProjectCreationFormService, FormLocation } from "app/services/project-creation-form.service";
 import { LoginService } from "app/services/login.service";
 
 @Component({
@@ -23,9 +23,9 @@ export class ImageUploadComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {
         let file: File = fileList[0];
-
-        this.projectService.uploadImageForProject(this.projectCreationFormService.getProjectId(), this.loginService.userId, file);
-
+        this.projectService.uploadImageForProject(this.projectCreationFormService.getProjectId(), this.loginService.userId, file).subscribe(data=>{
+          this.projectCreationFormService.setFormLocation(FormLocation.DONE);
+        });
     }
   }
 

@@ -15,18 +15,21 @@
         <input type="text" class="form-control" placeholder="Subtitle" required="" autofocus="" name="subtitle" #subtitle="ngModel" [(ngModel)]="model.subtitle"/>    
   </div>
 
+    <div class="form-group">
+        <small *ngIf="target.errors && (target.dirty || target.touched)" class="text-muted">
+            <div [hidden]="!target.errors.required">Target is required</div>
+        </small>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon">Target $</div>
+                <input rows="6" type="text" class="form-control" name="target" placeholder="00.00" required="" autofocus="" #target="ngModel" [(ngModel)]="model.target"/> 
+        </div>
+  </div>
+
   <div class="form-group">
         <small *ngIf="description.errors && (description.dirty || description.touched)" class="text-muted">
             <div [hidden]="!description.errors.required">Description is required</div>
         </small>
         <textarea rows="6" type="text" class="form-control" name="description" placeholder="Description" required="" autofocus="" #description="ngModel" [(ngModel)]="model.description"></textarea> 
-  </div>
-
-  <div class="form-group">
-        <small *ngIf="target.errors && (target.dirty || target.touched)" class="text-muted">
-            <div [hidden]="!target.errors.required">Target is required</div>
-        </small>
-        <textarea rows="6" type="text" class="form-control" name="target" placeholder="Target" required="" autofocus="" #target="ngModel" [(ngModel)]="model.target"></textarea> 
   </div>
 
   <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" [disabled]="!basicDetailsForm.form.valid">

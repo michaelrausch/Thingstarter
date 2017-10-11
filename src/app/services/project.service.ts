@@ -31,6 +31,9 @@ export class ProjectService {
     private loadInitialProjects(){
         this.http.get<ProjectBrief[]>(environment.api_base_url + "projects", { params: new HttpParams().set("startIndex", "0").append("count", this.startAmount.toString())})
             .subscribe(data => {
+                this.featuredProjects = [];
+                this.projectBriefs = [];
+
                 this.projectBriefs = this.processProjectResponse(data);
                 this.featuredProjects = this.projectBriefs;
                 this.currentIndex = data.length;
@@ -84,9 +87,8 @@ export class ProjectService {
             data = this.processProjectResponse(data);
             this.projectBriefs = this.projectBriefs.concat(data);
 
-
             this.isLoadingProjects = false;
-            this.currentIndex = data.length;
+            this.currentIndex += data.length;
 
             if (data.length == 0){
                 this.reachedEnd = true;
@@ -104,12 +106,12 @@ export class ProjectService {
         this.projectBriefs = this.featuredProjects;
         this.reachedEnd = false;
 
-        if (this.projectBriefs == undefined){
-            this.loadInitialProjects();
-        }
-        else{
+        if (this.projectBriefs != undefined){
             this.currentIndex = this.projectBriefs.length;
         }
+
+        this.loadInitialProjects();
+    
     }
 
     /**
@@ -221,13 +223,17 @@ export class ProjectService {
     }
 
     public uploadImageForProject(id: number, userId: number, file: File){
-        this.http.put(environment.api_base_url + "projects/" + id + "/image", file, {
-            headers: this.loginService.getAuthHeaders().append("Content-Type", "image/png")
-        }).subscribe(data => {
-            console.log(data);
-        }, error => {
-            console.log(error);
-        })
+        return new Observable(observer => {
+            if (file.type != "image/jpeg" && file.type !="image/png") return observer.error({});
+
+            this.http.put(environment.api_base_url + "projects/" + id + "/image", file, {
+                headers: this.loginService.getAuthHeaders().append("Content-Type", file.type)
+            }).subscribe(data => {
+                observer.next();
+            }, error => {
+                observer.next();
+            })
+        });
     }
 }
 

@@ -17,8 +17,8 @@
       Add Reward
   </button>   
 
-  <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" (click)="onSubmit()">
-      {{ rewards.length > 0 ? 'Create Project' : 'I don\'t want any rewards' }}
+  <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" (click)="onSubmit()" [disabled]="rewards.length < 1">
+      {{ rewards.length > 0 ? 'Create Project' : 'You must have at least one reward' }}
       <span *ngIf="isProcessing"><i class="fa fa-spinner fa-pulse"></i></span>  
   </button>   
 
