@@ -1,5 +1,10 @@
 <app-page-head-small title="Create Project"></app-page-head-small>
 
 <div class="container create_project_form">
-    <app-create-project-basic-details> </app-create-project-basic-details>
+    <app-create-project-basic-details *ngIf="projectCreationFormService.getFormLocation() == formLocation.BASIC_INFO"> </app-create-project-basic-details>
+    <app-create-project-rewards *ngIf="projectCreationFormService.getFormLocation() == formLocation.REWARDS"> </app-create-project-rewards>
+    <app-create-project-image-upload *ngIf="projectCreationFormService.getFormLocation() == formLocation.UPLOAD_IMAGE"> </app-create-project-image-upload>
+    <app-create-project-done *ngIf="projectCreationFormService.getFormLocation() == formLocation.DONE"> </app-create-project-done>
 </div>
+
+<app-footer></app-footer>

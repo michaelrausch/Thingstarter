@@ -177,3 +177,9 @@ input[type="password"], input[type="email"], input[type="text"] {
 #plege_amount_fi{
     width: 300px;
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

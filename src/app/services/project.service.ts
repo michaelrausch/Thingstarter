@@ -7,6 +7,8 @@ import { ProjectBrief } from 'app/services/responses/projects/ProjectBrief';
 import { Router } from "@angular/router";
 import { LoginService } from "app/services/login.service";
 import { HttpHeaders } from "@angular/common/http";
+import { BasicProjectInfo, Reward } from "app/services/project-creation-form.service";
+import { ProjectCreationResponse } from "app/services/responses/projects/ProjectCreationResponse";
 
 @Injectable()
 export class ProjectService {
@@ -19,7 +21,7 @@ export class ProjectService {
     private startAmount: number = 6;
     private reachedEnd: boolean = false;
 
-    constructor(private http: HttpClient, private router: Router) { 
+    constructor(private http: HttpClient, private router: Router, private loginService: LoginService) { 
         this.loadInitialProjects();
     }
 
@@ -82,8 +84,9 @@ export class ProjectService {
             data = this.processProjectResponse(data);
             this.projectBriefs = this.projectBriefs.concat(data);
 
+
             this.isLoadingProjects = false;
-            this.currentIndex += data.length;
+            this.currentIndex = data.length;
 
             if (data.length == 0){
                 this.reachedEnd = true;
@@ -100,7 +103,13 @@ export class ProjectService {
     public resetChunks(){
         this.projectBriefs = this.featuredProjects;
         this.reachedEnd = false;
-        this.currentIndex = this.projectBriefs.length;
+
+        if (this.projectBriefs == undefined){
+            this.loadInitialProjects();
+        }
+        else{
+            this.currentIndex = this.projectBriefs.length;
+        }
     }
 
     /**
@@ -165,6 +174,60 @@ export class ProjectService {
     public getPledgeAmount(){
         var pledgeAmount = localStorage.getItem("pledgeAmount");
         return +pledgeAmount;
+    }
+
+    public addProject(projectInfo: BasicProjectInfo, rewards: Reward[], userId: number){
+        for (let reward of rewards){
+            reward.amount = +reward.amount;
+        }
+
+        return new Observable(observer => {
+            if (!this.loginService.isLoggedIn()) return observer.error({
+                error: "Not logged in",
+                status: 401
+            });
+
+            console.log({
+                title: projectInfo.title,
+                subtitle: projectInfo.subtitle,
+                description: projectInfo.description,
+                target: +projectInfo.target,
+                creators: new Array({
+                    id: +userId
+                }, {id:1}),
+                rewards: rewards
+            })
+
+            this.http.post<ProjectCreationResponse>(environment.api_base_url + "projects", {
+                title: projectInfo.title,
+                subtitle: projectInfo.subtitle,
+                description: projectInfo.description,
+                target: +projectInfo.target,
+                creators: [{
+                    id: +userId
+                }],
+                rewards: rewards
+            }, {
+                headers: this.loginService.getAuthHeaders()
+            }).subscribe(result => {
+                return observer.next(result.id);
+            }, error => {
+                return observer.error({
+                    status: error.status,
+                    error: error.error
+                })
+            })
+        });
+    }
+
+    public uploadImageForProject(id: number, userId: number, file: File){
+        this.http.put(environment.api_base_url + "projects/" + id + "/image", file, {
+            headers: this.loginService.getAuthHeaders().append("Content-Type", "image/png")
+        }).subscribe(data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        })
     }
 }
 

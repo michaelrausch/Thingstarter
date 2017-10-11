@@ -1,20 +1,36 @@
 
-<form action="" class="user-form left-aligned-form">
-  <h1>Lets get dis parrrtttyyparrot started</h1>
+<form action="" class="user-form" (ngSubmit)="onSubmit()" #basicDetailsForm="ngForm">
   <div class="form-group">
-      <input type="text" class="form-control" name="projectTitle" placeholder="Project Title" required="" autofocus=""/>    
+        <small *ngIf="title.errors && (title.dirty || title.touched)" class="text-muted">
+            <div [hidden]="!title.errors.required">Project Title is required</div>
+        </small>
+        <input type="text" class="form-control" placeholder="Project Title" required="" name="title" autofocus="" #title="ngModel" [(ngModel)]="model.title"/>    
   </div>
 
   <div class="form-group">
-      <input type="text" class="form-control" name="projectTitle" placeholder="Subtitle" required="" autofocus=""/>    
+        <small *ngIf="subtitle.errors && (subtitle.dirty || subtitle.touched)" class="text-muted">
+            <div [hidden]="!subtitle.errors.required">Subtitle is required</div>
+        </small>
+
+        <input type="text" class="form-control" placeholder="Subtitle" required="" autofocus="" name="subtitle" #subtitle="ngModel" [(ngModel)]="model.subtitle"/>    
   </div>
 
   <div class="form-group">
-      <textarea rows="6" type="text" class="form-control" name="projectTitle" placeholder="Description" required="" autofocus=""></textarea> 
+        <small *ngIf="description.errors && (description.dirty || description.touched)" class="text-muted">
+            <div [hidden]="!description.errors.required">Description is required</div>
+        </small>
+        <textarea rows="6" type="text" class="form-control" name="description" placeholder="Description" required="" autofocus="" #description="ngModel" [(ngModel)]="model.description"></textarea> 
   </div>
 
-  <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" [disabled]="!loginForm.form.valid">
-      Add rewards
+  <div class="form-group">
+        <small *ngIf="target.errors && (target.dirty || target.touched)" class="text-muted">
+            <div [hidden]="!target.errors.required">Target is required</div>
+        </small>
+        <textarea rows="6" type="text" class="form-control" name="target" placeholder="Target" required="" autofocus="" #target="ngModel" [(ngModel)]="model.target"></textarea> 
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" [disabled]="!basicDetailsForm.form.valid">
+      {{basicDetailsForm.form.valid ? 'Now let\'s add some rewards' : 'Enter the projects details...'}}
       <span *ngIf="isLoggingIn"><i class="fa fa-spinner fa-pulse"></i></span>            
   </button>   
 </form>

@@ -43,6 +43,7 @@ import { AppComponent } from './app.component';
  */
 import { LoginService } from './services/login.service';
 import { ProjectService } from './services/project.service';
+import { ProjectCreationFormService } from './services/project-creation-form.service';
 
 const appRoutes: Routes = [
   { path: '',
@@ -109,7 +110,7 @@ const appRoutes: Routes = [
     FlashMessagesModule,
     InfiniteScrollModule
   ],
-  providers: [LoginService, ProjectService],
+  providers: [LoginService, ProjectService, ProjectCreationFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

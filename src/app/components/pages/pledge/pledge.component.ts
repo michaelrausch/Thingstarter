@@ -65,8 +65,6 @@ export class PledgeComponent implements OnInit {
         return this.showSuccess("Transaction Accepted")
       }
     });
-
-
   }
 
   private processTransactionResult(token: string){
