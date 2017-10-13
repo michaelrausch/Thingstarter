@@ -1,7 +1,8 @@
-<div id="jumbo">
+<div id="jumbo" [ngClass]="trumpped ? 'goldGradient' : ''">
   <div id="jumbo-content">
-    <h1 class="jumbo-header">KickStarted</h1>
+    <h1 class="jumbo-header" >KickStarted</h1>
     <h3 class="jumbo-sub">Pay money for something that will never be released!</h3>
     <a class="btn btn-lg btn-green btn-free jumbo-cta-btn" routerLink="/explore">Explore</a>
   </div>
+  <div (konami)="trumpet()"></div>
 </div>

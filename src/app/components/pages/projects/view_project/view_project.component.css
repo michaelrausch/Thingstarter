@@ -17,7 +17,31 @@
 
 .projectDescription{
     color: #3F3F3F;
-    
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 336px;
+    padding-right: 12px;
+}
+
+
+.projectDescription::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	background-color: #F5F5F5;
+}
+
+.projectDescription::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.projectDescription::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgba(88, 107, 233, 0.3);
 }
 
 .rewards{
@@ -29,25 +53,15 @@
     float: right;
 }
 
-.pledged #amtPledged{
-    font-weight: 500;
-    font-size: 30px;
-    margin-bottom: 0px;
-    color: #05AF3C;
+.rewardHeading {
+    width: 400px;
+    float: right;
+    margin-bottom:20px;
 }
 
-.pledged #goal{
-    margin-top: 0px;
-    font-size: 15px;
-    color: #626369;
-}
-
-.progress{
-    height: 5px;
-    border-radius: 0px;
-    margin-bottom: 15px;
-}
-
-.progress-bar{
-    background-color: #05AF3C;
+.card{
+    margin-bottom: 25px;
+    padding: 25px;
+    border: 1px solid rgba(0,0,0,.125);
+    box-shadow: 5px 5px 40px 1px rgba(0, 0, 0, 0.1) !important;
 }

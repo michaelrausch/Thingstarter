@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { KonamiModule } from 'ngx-konami';
 
 /*
  * Pages
@@ -35,6 +36,7 @@ import { DoneComponent } from './components/pages/projects/create_project/form/d
 import { PageHeadSmallComponent } from './components/page_elements/page_head_small/page_head_small.component';
 import { RewardComponent } from './components/page_elements/reward/reward.component';
 import { PledgeComponent } from './components/pages/pledge/pledge.component';
+import { PledgeDetailComponent } from './components/page_elements/pledge/pledge.component';
 
 import { AppComponent } from './app.component';
 
@@ -44,6 +46,9 @@ import { AppComponent } from './app.component';
 import { LoginService } from './services/login.service';
 import { ProjectService } from './services/project.service';
 import { ProjectCreationFormService } from './services/project-creation-form.service';
+import { FundingStatusComponent } from './components/page_elements/funding-status/funding-status.component';
+import { ProjectCreatorBlockComponent } from './components/page_elements/project-creator-block/project-creator-block.component';
+import { RecentPledgesComponent } from './components/page_elements/recent-pledges/recent-pledges.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -99,7 +104,11 @@ const appRoutes: Routes = [
     DoneComponent,
     PageHeadSmallComponent,
     RewardComponent,
-    PledgeComponent
+    PledgeComponent,
+    FundingStatusComponent,
+    ProjectCreatorBlockComponent,
+    RecentPledgesComponent,
+    PledgeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +117,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FlashMessagesModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    KonamiModule
   ],
   providers: [LoginService, ProjectService, ProjectCreationFormService],
   bootstrap: [AppComponent]

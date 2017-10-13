@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jumbotron.component.css']
 })
 export class JumbotronComponent implements OnInit {
+  trumpped = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  trumpet(){
+    this.trumpped = true;
+  }
 }

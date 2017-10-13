@@ -8,16 +8,20 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'app works!';
+  easterEgg = false;
   
   constructor(private router: Router){}
 
   ngOnInit(){
     this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-          return;
-      }
-      window.scrollTo(0, 0)
-  });
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    })
+  }
 
+  trump(){
+    this.easterEgg = true;
   }
 }

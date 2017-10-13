@@ -11,9 +11,14 @@ export class ProjectComponent implements OnInit {
   @Input() imageUri;
   @Input() id;
 
+  easterEgg = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  setEasterEgg(){
+    this.easterEgg = true;
+  }
 }

@@ -1,9 +1,10 @@
 
 <div class="card project-card" style="width: 20rem;">
-  <img class="card-img-top project-card-img" src="{{imageUri}}" alt="Card image cap">
+  <img class="card-img-top project-card-img" [src]="easterEgg ? 'https://i.giphy.com/media/l41lPd4rlOlw1lRqU/giphy.webp' : imageUri" alt="Card image cap">
   <div class="card-block">
-    <h4 class="card-title project-card-title">{{title}}</h4>
+    <h4 class="card-title project-card-title">{{ title }}</h4>
     <p class="card-text">{{subtitle}}</p>
     <a routerLink="/project/{{id}}" class="btn btn-outline-primary">View Project</a>
   </div>
 </div>
+  <div (konami)="setEasterEgg()"></div>

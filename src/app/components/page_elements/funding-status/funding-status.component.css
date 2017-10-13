@@ -1,0 +1,32 @@
+.pledged #amtPledged{
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 0px;
+    color: #05AF3C;
+}
+
+.pledged #goal{
+    margin-top: 0px;
+    font-size: 15px;
+    color: #626369;
+}
+
+.progress{
+    height: 5px;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.progress-bar{
+    background-color: #05AF3C;
+}
+
+.fundedBy{
+    font-weight: 500;
+    font-size: 17px;
+    color: #626369;
+}
+
+.numBackers{
+    color: #05AF3C;
+}

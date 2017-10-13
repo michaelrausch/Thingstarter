@@ -1,0 +1,12 @@
+<div>
+    <div class="progress" style="width: 100%;">
+        <div class="progress-bar" [ngStyle]="{width:pledged/goal | percent:'1.0-1'}" attr.aria-valuemin="0" attr.aria-valuemax="{{goal}}" attr.aria-valuenow="{{pledged}}"></div>
+    </div>
+
+    <div class="pledged">
+        <p id="amtPledged">${{pledged / 100}}</p>
+        <p id="goal">pledged of ${{goal / 100}} goal</p>
+    </div>
+
+    <p class="fundedBy">Funded by <span class="numBackers">{{ numBackers }}</span> backers.</p>
+</div>
