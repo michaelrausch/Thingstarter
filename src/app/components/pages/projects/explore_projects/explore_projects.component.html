@@ -1,18 +1,35 @@
 <app-page-head-small title="Explore" ></app-page-head-small>
 
-<div class="container projects">
-    <div class="row">
-        <div class="col-md-4 project" *ngFor="let project of projectService.getProjectBriefs()" infiniteScroll 
-            [infiniteScrollDistance]="0" 
-            [infiniteScrollThrottle]="1500"
-            (scrolled)="scrolledDown()">
-            <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}" id="{{project.id}}"></app-project>
+<div class="container projects"
+    infiniteScroll 
+    [infiniteScrollDistance]="0" 
+    [infiniteScrollThrottle]="1500"
+    (scrolled)="scrolledDown()">
+    
+    <div class="search" *ngIf="true">
+        <input type="text" placeholder="Search" (changed)="searchChanged()" [(ngModel)]="sq" class="form-control search-box">
+    
+        <div class="btn-group select-buttons" data-toggle="buttons" *ngIf="loginService.isLoggedIn()">
+            <label class="btn btn-secondary" (click)="toggleProjectsCreated()">
+                <input type="checkbox" checked autocomplete="off" (change)="toggleProjectsCreated()"> Projects I Created
+            </label>
+            <label class="btn btn-secondary" (click)="toggleProjectsBacked()">
+                <input type="checkbox" autocomplete="off" (change)="toggleProjectsBacked()"> Projects I Back
+            </label>
+        </div>
+    </div>
+
+    <div class="row project-list">
+        <div *ngFor="let project of projectService.getProjectBriefs()">
+            <div class="col-md-4 project" *ngIf="project.title.toLowerCase().includes(sq.toLowerCase()) || project.subtitle.toLowerCase().includes(sq.toLowerCase())">
+                <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}" id="{{project.id}}"></app-project>
+            </div>
         </div> 
     </div>
 </div>
 
 <div class="project-list-result">
-    <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached()"></i>
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached() && showLoadingAnimation"></i>
     <p class="project-end-reached" *ngIf="projectService.endOfProjectsReached()">There are no more projects left <i class="fa fa-frown-o" aria-hidden="true"></i>
 </p>
 </div>

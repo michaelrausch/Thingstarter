@@ -23,10 +23,21 @@
 }
 
 .footer-left{
+    float: left;
     text-align: left;
     vertical-align: middle;
     width:300px;
     padding-top: 23px;
     font-family: "circ-bold";
     color: #919496;
+}
+
+.footer-right{
+    text-align: right;
+    vertical-align: middle;
+    width:100px;
+    padding-top: 30px;
+    font-family: "circ-bold";
+    color: #919496;
+    float: right;
 }

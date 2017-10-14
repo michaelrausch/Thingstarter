@@ -12,15 +12,17 @@ import { LoginService } from "app/services/login.service";
 export class ViewProjectPageComponent implements OnInit {
   private project: Project;
   private userId: number;
+  private projectId: number;
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService, private loginService: LoginService ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.loadProject(params['id']);
+      this.projectId = params['id'];
     });
 
     this.userId = this.loginService.userId;
+    this.loadProject(this.projectId);
   }
 
   private loadProject(id: number){
@@ -34,8 +36,17 @@ export class ViewProjectPageComponent implements OnInit {
   }
 
   private pledgeClicked(amount: number){
-    console.log(amount);
     this.projectService.setPledgeAmount(amount);
     this.projectService.startPledgeToProject(this.project.id);
+  }
+
+  private closeProject(){
+    alert("Closed")
+
+    this.project.open = false;
+
+
+
+    //this.loadProject(this.projectId);
   }
 }

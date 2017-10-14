@@ -65,3 +65,7 @@
     border: 1px solid rgba(0,0,0,.125);
     box-shadow: 5px 5px 40px 1px rgba(0, 0, 0, 0.1) !important;
 }
+
+.closeProjectButton{
+    cursor: pointer;
+}

@@ -25,7 +25,7 @@
 
                     <p class="boldInfo">Created by <span class="greenHighlight">{{ project.creators[0].username }}</span> on <span class="greenHighlight">{{ "27th October" }}</span></p>  
 
-                    <a *ngIf="loginService.isLoggedIn() && loginService.userId == project.creators[0].id">Close Project</a>
+                    <a *ngIf="loginService.isLoggedIn() && loginService.userId == project.creators[0].id && project.open" (click)="closeProject()" class="closeProjectButton greenHighlight">Close Project</a>
                 </div>
 
                 <div class="card">
@@ -37,31 +37,24 @@
                         </app-pledge-detail>
                     </div>
                 </div>
-                
-
-
             </div>
-                        
-            <div class="col-md-6 rewards">
+                  
+            <div class="col-md-6">
                 <h3 class="rewardHeading">Rewards</h3>
-                <div class="rewardContainer" *ngFor="let reward of project.rewards" (click)="pledgeClicked(reward.amount)">
-                    <app-reward amount="{{reward.amount}}" description="{{reward.description}}"></app-reward>
+
+                <div *ngIf="project.open">
+                    <div class="rewardContainer" *ngFor="let reward of project.rewards" (click)="pledgeClicked(reward.amount)">
+                        <app-reward amount="{{reward.amount}}" description="{{reward.description}}"></app-reward>
+                    </div>
                 </div>
-            </div>
-            
+
+                <div *ngIf="!project.open" class="rewardContainer">
+                    <p>Project Has Been closed</p>
+                </div> 
+            </div>         
         </div>
-       
-        
-
-
-
-
-
-
     </div>
-
-    
-    
+ 
     <app-footer></app-footer>
 </div>
 

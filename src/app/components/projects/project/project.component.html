@@ -1,6 +1,7 @@
 
-<div class="card project-card" style="width: 20rem;">
-  <img class="card-img-top project-card-img" [src]="easterEgg ? 'https://i.giphy.com/media/l41lPd4rlOlw1lRqU/giphy.webp' : imageUri" alt="Card image cap">
+<div class="card project-card" style="width: 340px;">
+  <img class="card-img-top project-card-img" [src]="easterEgg ? 'https://i.giphy.com/media/l41lPd4rlOlw1lRqU/giphy.webp' : imageUri" alt="Card image cap" onerror="this.src='http://borkborkiamdoggo.com/wp-content/uploads/2017/01/doin-your-dreams-a-concern-heck.jpg'"/>
+
   <div class="card-block">
     <h4 class="card-title project-card-title">{{ title }}</h4>
     <p class="card-text">{{subtitle}}</p>
