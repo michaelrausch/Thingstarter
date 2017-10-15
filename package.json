@@ -7,7 +7,7 @@
     "ng": "ng",
     "serve": "ng serve",
     "dev": "ng serve --port 8080",
-    "start": "cd dist && angular-http-server --port process.env.PORT || 8080",
+    "start": "cd dist && angular-http-server --port ${PORT} || 8080",
     "heroku-prebuild": "npm install -g angular-http-server angular-cli",
     "heroku-postbuild": "ng build",
     "test": "ng test",
