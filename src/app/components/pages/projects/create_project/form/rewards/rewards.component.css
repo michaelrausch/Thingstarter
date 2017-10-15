@@ -16,7 +16,16 @@
     margin-top: 20px;
 }
 
-.reward-badge i {
+.reward-edit-icons{
     float: right;
     cursor: pointer;
+}
+
+.reward-badge i {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.edit-icon {
+    margin-top: 2px;
 }

@@ -9,10 +9,12 @@
   <div class="form-group">
         <small *ngIf="amount.errors && (amount.dirty || amount.touched) && formChanged" class="text-muted">
             <div [hidden]="!amount.errors.required">Amount is required</div>
+            <div [hidden]="!amount.errors.pattern">Amount must be in the format $12.34</div>    
+            <div [hidden]="!amount.errors.max">Amount must be less than 1,000,000</div>                                   
         </small>
         <div class="input-group">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control" name="amount" placeholder="00.00" required="" autofocus="" #amount="ngModel" [(ngModel)]="currentReward.amount" (change)="setFormChanged()"/>    
+            <input type="text" class="form-control" name="amount" placeholder="00.00" max="1000000" required="" pattern="[0-9]+[.][0-9][0-9]" autofocus="" #amount="ngModel" [(ngModel)]="currentReward.amount" (change)="setFormChanged()"/>    
         </div>
   </div>
 
@@ -32,8 +34,11 @@
             
         <span class="badge badge-secondary reward-badge col-sm-12"  *ngFor="let reward of rewards; let i = index">
             ${{reward.amount / 100}} Reward
-            
-            <i class="fa fa-trash-o" aria-hidden="true" (click)="removeReward(i)"></i>            
+
+            <div class="reward-edit-icons">
+                <i class="fa fa-pencil-square-o edit-icon" aria-hidden="true" (click)="editReward(i)"></i>           
+                <i class="fa fa-trash-o" aria-hidden="true" (click)="removeReward(i)"></i>            
+            </div>
         </span>
     </ul>
   </div>

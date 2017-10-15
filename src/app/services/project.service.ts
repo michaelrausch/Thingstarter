@@ -126,10 +126,6 @@ export class ProjectService {
             params: this.buildParams()
         })
         .subscribe(data => {
-            console.log(data);
-            console.log(this.chunkSize);
-            console.log(this.currentIndex);
-
             if (data.length == 0){
                 this.reachedEnd = true;
                 this.isLoadingProjects = false;
@@ -259,6 +255,7 @@ export class ProjectService {
 
     public getPledgeAmount(){
         var pledgeAmount = localStorage.getItem("pledgeAmount");
+        localStorage.setItem('PledgeAmount', undefined);
         return +pledgeAmount;
     }
 

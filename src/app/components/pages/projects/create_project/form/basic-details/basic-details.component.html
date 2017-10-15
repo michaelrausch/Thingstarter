@@ -18,10 +18,12 @@
     <div class="form-group">
         <small *ngIf="target.errors && (target.dirty || target.touched)" class="text-muted">
             <div [hidden]="!target.errors.required">Target is required</div>
+            <div [hidden]="!target.errors.pattern">Target must be in the format $12.34</div> 
+            <div [hidden]="!target.errors.max">Amount must be less than 1,000,000</div>            
         </small>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon">Target $</div>
-                <input rows="6" type="text" class="form-control" name="target" placeholder="00.00" required="" autofocus="" #target="ngModel" [(ngModel)]="model.target"/> 
+                <input rows="6" type="text" class="form-control" name="target" placeholder="00.00" max="1000000" required="" autofocus="" #target="ngModel" [(ngModel)]="model.target" pattern="[0-9]+[.][0-9][0-9]"/> 
         </div>
   </div>
 

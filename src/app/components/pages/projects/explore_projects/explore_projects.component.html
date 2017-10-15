@@ -7,7 +7,7 @@
     (scrolled)="scrolledDown()">
     
     <div class="search" *ngIf="true">
-        <input type="text" placeholder="Search" (changed)="searchChanged()" [(ngModel)]="sq" class="form-control search-box">
+        <input type="text" placeholder="Search" (change)="searchChanged()" [(ngModel)]="searchQuery" class="form-control search-box">
     
         <div class="btn-group select-buttons" data-toggle="buttons" *ngIf="loginService.isLoggedIn()">
             <label class="btn btn-secondary" (click)="toggleProjectsCreated()">
@@ -21,7 +21,7 @@
 
     <div class="row project-list">
         <div *ngFor="let project of projectService.getProjectBriefs()">
-            <div class="col-md-4 project" *ngIf="project.title.toLowerCase().includes(sq.toLowerCase()) || project.subtitle.toLowerCase().includes(sq.toLowerCase())">
+            <div class="col-md-4 project" *ngIf="project.title.toLowerCase().includes(searchQuery.toLowerCase()) || project.subtitle.toLowerCase().includes(searchQuery.toLowerCase())">
                 <app-project title="{{project.title}}" subtitle="{{project.subtitle}}" imageUri="{{project.imageUri}}" id="{{project.id}}"></app-project>
             </div>
         </div> 
@@ -29,7 +29,7 @@
 </div>
 
 <div class="project-list-result">
-    <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached() && showLoadingAnimation"></i>
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw" *ngIf="!projectService.endOfProjectsReached() && !isInSearchMode"></i>
     <p class="project-end-reached" *ngIf="projectService.endOfProjectsReached()">There are no more projects left <i class="fa fa-frown-o" aria-hidden="true"></i>
 </p>
 </div>

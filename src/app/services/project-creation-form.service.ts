@@ -9,6 +9,7 @@ export class ProjectCreationFormService {
     private basicProjectInfo: BasicProjectInfo;
     private rewards: Reward[];
     private projectId: number;
+    private errorCreatingProject: boolean = false;
 
     constructor(private projectService: ProjectService, private loginService: LoginService) { }
 
@@ -34,6 +35,11 @@ export class ProjectCreationFormService {
 
     public addProject(){
         return this.projectService.addProject(this.basicProjectInfo, this.rewards, this.loginService.userId)
+            // .subscribe(data => {
+            //     this.errorCreatingProject = false;
+            // }, error=> {
+            //     this.errorCreatingProject = true;
+            // })
     }
 
     public setProjectId(id: number){
@@ -42,6 +48,10 @@ export class ProjectCreationFormService {
 
     public getProjectId(){
         return this.projectId;
+    }
+
+    public hadErrorCreatingProject(){
+        return this.errorCreatingProject;
     }
 }
 

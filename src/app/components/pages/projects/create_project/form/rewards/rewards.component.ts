@@ -48,6 +48,20 @@ export class RewardsComponent implements OnInit {
     this.rewards = newRewards;
   }
 
+  editReward(index: number){
+    var r: Reward;
+
+    for (let i = 0; i < this.rewards.length; i++){
+      if (i == index) {
+        this.currentReward = new Reward();
+        this.currentReward.description = this.rewards[i].description;
+        this.currentReward.amount = this.rewards[i].amount / 100;
+      }
+    }
+
+    this.removeReward(index);
+  }
+
   setFormChanged(){
     this.formChanged = true;
   }
