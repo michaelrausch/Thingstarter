@@ -1,0 +1,13 @@
+h3{
+    text-align: center;
+}
+
+.fa-spinner{
+    text-align: center;
+    margin: auto;
+}
+
+.loading-icon{
+    margin-top: 40px;
+    font-size: 30px;
+}

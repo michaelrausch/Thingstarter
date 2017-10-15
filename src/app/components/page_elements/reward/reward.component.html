@@ -1,4 +1,4 @@
-<div class="reward" [ngClass]="isCustomPledge ? '': 'hvr-bounce-in bounce-med'">
+<div class="reward" [ngClass]="isCustomPledge || pledgeDisabled ? '': 'hvr-bounce-in bounce-med'">
   <p class="rewardTitle" *ngIf="!isCustomPledge">
     Pledge ${{amount / 100}} or more
   </p>
@@ -16,8 +16,12 @@
     <button class="btn btn-lg btn-primary btn-block btn-rounded form-submit-button" id="hibtn">Pledge</button>
   </div>
 
-  <div class="overlay" *ngIf="!isCustomPledge" (click)="clicked()">
+  <div class="overlay selectPledgeOverlay" *ngIf="!isCustomPledge && !pledgeDisabled" (click)="clicked()">
     <div class="text">Select This Reward</div>
+  </div>
+
+  <div class="overlay disabledOverlay" *ngIf="pledgeDisabled">
+    <div class="text">You cannot pledge to this project</div>
   </div>
   
 </div>

@@ -9,6 +9,8 @@ import { LoginService } from "app/services/login.service";
 import { HttpHeaders } from "@angular/common/http";
 import { BasicProjectInfo, Reward } from "app/services/project-creation-form.service";
 import { ProjectCreationResponse } from "app/services/responses/projects/ProjectCreationResponse";
+import { Backer } from 'app/services/responses/projects/Backer';
+
 
 @Injectable()
 export class ProjectService {
@@ -37,9 +39,11 @@ export class ProjectService {
      * Loads a list of initial projects
      */
     private loadFeaturedProjects(){
-        this.http.get<ProjectBrief[]>(environment.api_base_url + "projects", { params: new HttpParams().set("startIndex", "0").append("count", this.startAmount.toString())})
+        this.http.get<ProjectBrief[]>(environment.api_base_url + "projects", { 
+                params: new HttpParams().set("startIndex", "0").append("count", this.startAmount.toString()).append("open", "true")
+            })
             .subscribe(data => {
-                this.featuredProjects = this.processProjectResponse(data, false);
+                this.featuredProjects = this.processProjectsResponse(data, false);
             }, error => {
                 //TODO handle error
                 console.log(error);
@@ -50,7 +54,7 @@ export class ProjectService {
      * Appends the correct image path to the imageUri
      * @param projects The list of projects to process
      */
-    private processProjectResponse(projects: ProjectBrief[], applySearchFilter: boolean){
+    private processProjectsResponse(projects: ProjectBrief[], applySearchFilter: boolean){
         var projectsToShow: ProjectBrief[] = new Array();
 
         for(let project of projects){
@@ -58,6 +62,35 @@ export class ProjectService {
         }
 
         return projects;
+    }
+
+    private processProjectResponse(project: Project){
+        var anonPledgeAmount = 0;
+        var pledges: Backer[] = new Array();
+
+        // TODO remove magic number
+        project.backers = project.backers.slice(0, 5);
+
+        for (let pledge of project.backers){
+            if (pledge.username.toLowerCase() == 'anonymous'){
+                anonPledgeAmount += pledge.amount;
+            }
+            else{
+                pledges.push(pledge);
+            }
+        }
+
+        if (anonPledgeAmount > 0){
+            pledges.push({
+                id: 0,
+                username: "Anonymous",
+                amount: anonPledgeAmount
+            } as Backer)
+        }
+        
+        project.backers = pledges;
+
+        return project;
     }
 
     /**
@@ -84,15 +117,8 @@ export class ProjectService {
      * if there are no more projects to display
      */
     public loadNextChunk(){
-        console.log("Called");
-        
-        console.log(this.isLoadingProjects);
-        console.log(this.reachedEnd);
-        
         if (this.isLoadingProjects) return;
         if (this.reachedEnd) return;
-
-        console.log("Isloading");
 
         this.isLoadingProjects = true;
 
@@ -110,7 +136,7 @@ export class ProjectService {
                 return;
             }
 
-            data = this.processProjectResponse(data, true);
+            data = this.processProjectsResponse(data, true);
 
             if (this.projectBriefs != undefined){
                 this.projectBriefs = this.projectBriefs.concat(data);
@@ -184,7 +210,7 @@ export class ProjectService {
             this.http.get<Project>(environment.api_base_url + "projects/" + id)
                 .subscribe(data => {
                     data.imageUri = environment.api_base_url + data.imageUri;
-                    
+                    data = this.processProjectResponse(data);
                     observer.next(data);
                 },
                 error =>{
@@ -271,7 +297,9 @@ export class ProjectService {
 
     public uploadImageForProject(id: number, userId: number, file: File){
         return new Observable(observer => {
-            if (file.type != "image/jpeg" && file.type !="image/png") return observer.error({});
+            if (file.type != "image/jpeg" && file.type !="image/png") return observer.error({
+                error: "Invalid file format"
+            });
 
             this.http.put(environment.api_base_url + "projects/" + id + "/image", file, {
                 headers: this.loginService.getAuthHeaders().append("Content-Type", file.type)

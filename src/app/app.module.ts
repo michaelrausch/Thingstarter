@@ -49,6 +49,7 @@ import { ProjectCreationFormService } from './services/project-creation-form.ser
 import { FundingStatusComponent } from './components/page_elements/funding-status/funding-status.component';
 import { ProjectCreatorBlockComponent } from './components/page_elements/project-creator-block/project-creator-block.component';
 import { RecentPledgesComponent } from './components/page_elements/recent-pledges/recent-pledges.component';
+import { UpdateImageElementComponent } from './components/page_elements/update-image-element/update-image-element.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -108,7 +109,8 @@ const appRoutes: Routes = [
     FundingStatusComponent,
     ProjectCreatorBlockComponent,
     RecentPledgesComponent,
-    PledgeDetailComponent
+    PledgeDetailComponent,
+    UpdateImageElementComponent,
   ],
   imports: [
     BrowserModule,

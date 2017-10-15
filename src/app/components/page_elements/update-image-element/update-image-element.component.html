@@ -1,0 +1,7 @@
+<div class="input-group">
+    <input type="file" name="image" id="" #fileupload="ngModel" [(ngModel)]="name" (change)="onFileChange($event)" class="form-control"/>
+    
+    <span class="input-group-btn">
+        <button class="btn btn-success" type="button" (click)="updateImage()">Update image</button>
+    </span>                                                                            
+</div>

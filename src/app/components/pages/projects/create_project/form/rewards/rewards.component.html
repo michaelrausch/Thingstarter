@@ -1,16 +1,19 @@
 <form action="" class="user-form" #rewardForm="ngForm">
   <div class="form-group">
-        <small *ngIf="description.errors && (description.dirty || description.touched)" class="text-muted">
+        <small *ngIf="description.errors && (description.dirty || description.touched) && formChanged" class="text-muted">
             <div [hidden]="!description.errors.required">Project Title is required</div>
         </small>
-      <textarea class="form-control" name="description" placeholder="Reward Description" required="" autofocus="" #description="ngModel" [(ngModel)]="currentReward.description"> </textarea>    
+      <textarea class="form-control" name="description" placeholder="Reward Description" required="" autofocus="" #description="ngModel" [(ngModel)]="currentReward.description" (change)="setFormChanged()"> </textarea>    
   </div>
 
   <div class="form-group">
-        <small *ngIf="amount.errors && (amount.dirty || amount.touched)" class="text-muted">
-            <div [hidden]="!amount.errors.required">Project Title is required</div>
+        <small *ngIf="amount.errors && (amount.dirty || amount.touched) && formChanged" class="text-muted">
+            <div [hidden]="!amount.errors.required">Amount is required</div>
         </small>
-      <input type="text" class="form-control" name="amount" placeholder="Amount (cents)" required="" autofocus="" #amount="ngModel" [(ngModel)]="currentReward.amount"/>    
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="text" class="form-control" name="amount" placeholder="00.00" required="" autofocus="" #amount="ngModel" [(ngModel)]="currentReward.amount" (change)="setFormChanged()"/>    
+        </div>
   </div>
 
   <button type="button" class="btn btn-lg btn-primary btn-block form-submit-button" (click)="addReward()" [disabled]="!rewardForm.form.valid">
@@ -22,9 +25,19 @@
       <span *ngIf="isProcessing"><i class="fa fa-spinner fa-pulse"></i></span>  
   </button>   
 
-  <ul class="list-group" *ngIf="rewards != undefined && rewards.length > 0 && false">
-    <li class="list-group-item truncate" *ngFor="let reward of rewards">{{reward.description}}</li>
-  </ul>
+  <div *ngIf="rewards != undefined && rewards.length > 0" class="rewards">
+    <h3>Rewards</h3>    
+    
+    <ul class="row rewards-list">
+            
+        <span class="badge badge-secondary reward-badge col-sm-12"  *ngFor="let reward of rewards; let i = index">
+            ${{reward.amount / 100}} Reward
+            
+            <i class="fa fa-trash-o" aria-hidden="true" (click)="removeReward(i)"></i>            
+        </span>
+    </ul>
+  </div>
+  
 
 </form>
 

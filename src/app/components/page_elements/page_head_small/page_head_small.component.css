@@ -32,4 +32,7 @@
     letter-spacing: -.01em;
     font-weight: 900;
     font-family: "circ-black";
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+

@@ -1,0 +1,22 @@
+.reward-badge{
+    background-color: rgb(163, 163, 163);
+    padding: 10px 20px 10px 20px;
+    font-size: 14px;
+    margin:5px;
+    text-align: left;
+}
+
+.rewards-list{
+    width:100%;
+    padding: 0;
+    margin: 0px -5px 0px -5px;
+}
+
+.rewards{
+    margin-top: 20px;
+}
+
+.reward-badge i {
+    float: right;
+    cursor: pointer;
+}

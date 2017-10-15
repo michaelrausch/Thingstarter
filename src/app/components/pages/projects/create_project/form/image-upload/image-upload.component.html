@@ -1,4 +1,18 @@
-<h1>Select an image to upload...</h1>
+<div class="alert alert-danger form-message" *ngIf="hasError">
+    {{ errorMessage }}
+</div>
+
+<form action="" class="user-form" (ngSubmit)="onSubmit()" #basicDetailsForm="ngForm">  
+    <h3>Select an image to upload...</h3>
+    
+    <div class="form-group">
+      <input type="file" name="image" id="" #fileupload="ngModel" [(ngModel)]="name" (change)="onFileChange($event)" class="form-control"/>
+    </div>
+  
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="skipUploadingImage()">
+        Skip uploading an image...           
+    </button>   
+  </form>
+  
 <form>
-  <input type="file" name="image" id="" #fileupload="ngModel" [(ngModel)]="name" (change)="onFileChange($event)"/>
 </form>

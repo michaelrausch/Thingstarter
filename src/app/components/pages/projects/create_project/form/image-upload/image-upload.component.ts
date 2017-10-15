@@ -11,6 +11,8 @@ import { LoginService } from "app/services/login.service";
 export class ImageUploadComponent implements OnInit {
   private imageFile: File;
   private name: string;
+  private hasError: boolean = false;
+  private errorMessage: string = "";
 
   constructor(private projectService: ProjectService, private projectCreationFormService: ProjectCreationFormService, private loginService: LoginService) { }
 
@@ -19,17 +21,26 @@ export class ImageUploadComponent implements OnInit {
   }
 
   onFileChange(event){
-    console.log(event);
     let fileList: FileList = event.target.files;
+
     if(fileList.length > 0) {
         let file: File = fileList[0];
+
         this.projectService.uploadImageForProject(this.projectCreationFormService.getProjectId(), this.loginService.userId, file).subscribe(data=>{
           this.projectCreationFormService.setFormLocation(FormLocation.DONE);
+        },
+        error => {
+          this.hasError = true;
+          this.errorMessage = error.error;
         });
     }
   }
 
   onSubmit(){
     let _formData = new FormData();
+  }
+
+  skipUploadingImage(){
+    this.projectCreationFormService.setFormLocation(FormLocation.DONE);
   }
 }

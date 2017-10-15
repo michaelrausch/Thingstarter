@@ -1,4 +1,4 @@
-<app-page-head-small title="Create Project"></app-page-head-small>
+<app-page-head-small [title]="getPageTitle()"></app-page-head-small>
 
 <div class="container create_project_form">
     <app-create-project-basic-details *ngIf="projectCreationFormService.getFormLocation() == formLocation.BASIC_INFO"> </app-create-project-basic-details>

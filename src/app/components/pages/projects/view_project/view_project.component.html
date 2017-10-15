@@ -1,10 +1,9 @@
 <div *ngIf="project != undefined">
-
-    <app-page-head-small title="{{project.title}}" *ngIf="project != undefined" ></app-page-head-small>
+    <app-page-head-small title="{{project.title}} {{ !project.open ? '(closed)' : ''}}" *ngIf="project != undefined" ></app-page-head-small>
     
     <div class="container">
         <div class="row">
-                <img src="{{project.imageUri}}" class="projectImage col-md-6"/>
+                <img [src]="project.imageUri" class="projectImage col-md-6" onerror="this.src='http://borkborkiamdoggo.com/wp-content/uploads/2017/01/doin-your-dreams-a-concern-heck.jpg'"/>
                 <div class="col-md-6">
                     <p class="projectSubtitle">{{project.subtitle}}</p>    
                     
@@ -20,17 +19,33 @@
                     <app-funding-status class="currentProgress card-body"
                         [pledged]="project.progress.currentPledged" 
                         [goal]="project.target" 
-                        [numBackers]="project.backers.length">
+                        [numBackers]="project.progress.numberOfBackers">
                     </app-funding-status>
 
-                    <p class="boldInfo">Created by <span class="greenHighlight">{{ project.creators[0].username }}</span> on <span class="greenHighlight">{{ "27th October" }}</span></p>  
+                    <p class="boldInfo">Created by 
+                        <span class="greenHighlight" *ngFor="let creator of project.creators; let isLast=last">
+                                {{ creator.username }} {{ isLast ? ' ' : ', '}}
+                        </span>
+                        
+                        on <span class="greenHighlight">{{ creationDateString }}</span></p>  
 
-                    <a *ngIf="loginService.isLoggedIn() && loginService.userId == project.creators[0].id && project.open" (click)="closeProject()" class="closeProjectButton greenHighlight">Close Project</a>
+                    <button *ngIf="eligibleToPledge()" class="btn btn-success" (click)="customPledgeClicked()">Back this project</button>
+                </div>
+
+                <div class="card" *ngIf="loginService.isLoggedIn() && isOwner()">
+                    <div class="card-body">
+                        <h3>Modify Project</h3>
+
+                        <app-update-image-element [projectId]="project.id" (onSuccess)="loadProject($event)"></app-update-image-element>
+                        <button (click)="closeProject()" class="btn btn-danger">Close Project</button>
+                    </div>
                 </div>
 
                 <div class="card">
                     <div class="card-body">
                         <h3>Recent Pledges</h3>
+
+                        <p *ngIf="project.backers.length == 0">Nobody has backed this project, <span *ngIf="eligibleToPledge()" class="greenHighlight" style="cursor: pointer;" (click)="customPledgeClicked()">why not be the first?</span></p>
                         <app-pledge-detail *ngFor="let pledge of project.backers"
                             [username]="pledge.username"
                             [amount]="pledge.amount">
@@ -44,7 +59,7 @@
 
                 <div *ngIf="project.open">
                     <div class="rewardContainer" *ngFor="let reward of project.rewards" (click)="pledgeClicked(reward.amount)">
-                        <app-reward amount="{{reward.amount}}" description="{{reward.description}}"></app-reward>
+                        <app-reward amount="{{reward.amount}}" description="{{reward.description}}" [pledgeDisabled]="loginService.userId == project.creators[0].id || !project.open"></app-reward>
                     </div>
                 </div>
 

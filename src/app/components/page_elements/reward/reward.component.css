@@ -23,9 +23,6 @@
     font-size: 20px;
 }
 
-.reward:hover .overlay {
-    opacity: 1;
-}
 
 .overlay {
     position: absolute;
@@ -36,10 +33,16 @@
     left: 0;
     right: 0;
     opacity: 0;
+}
+
+.selectPledgeOverlay {
     transition: .5s ease;
     background-color: rgba(43,222,115,0.9);
 }
 
+.reward:hover .selectPledgeOverlay {
+    opacity: 1;
+}
 
 .overlay .text{
     color: white;
@@ -49,6 +52,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);  
+}
+
+.disabledOverlay {
+    transition: .5s ease;
+    background-color: rgba(196, 196, 196, 0.9);
+    opacity: 1;
 }
 
 input{

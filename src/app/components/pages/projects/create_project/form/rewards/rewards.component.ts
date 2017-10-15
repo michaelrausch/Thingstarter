@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Reward, FormLocation, ProjectCreationFormService } from "app/services/project-creation-form.service";
+import { NgForm, NgModel, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-project-rewards',
@@ -7,6 +8,7 @@ import { Reward, FormLocation, ProjectCreationFormService } from "app/services/p
   styleUrls: ['./rewards.component.css']
 })
 export class RewardsComponent implements OnInit {
+  private formChanged: boolean = false;
   private currentReward: Reward = new Reward;
   private rewards: Reward[] = [];
   private isProcessing: boolean = false;
@@ -18,8 +20,11 @@ export class RewardsComponent implements OnInit {
   }
 
   addReward(){
+    this.currentReward.amount = this.currentReward.amount * 100;
+
     this.rewards.push(this.currentReward);    
     this.currentReward = new Reward();
+    this.formChanged = false;
   }
 
   onSubmit(){
@@ -31,6 +36,20 @@ export class RewardsComponent implements OnInit {
     }, error => {
       console.log(error);
     })
+  }
+
+  removeReward(index: number){
+    var newRewards = new Array();
+
+    for (let i = 0; i < this.rewards.length; i++){
+      if (i != index) newRewards.push(this.rewards[i]);
+    }
+    
+    this.rewards = newRewards;
+  }
+
+  setFormChanged(){
+    this.formChanged = true;
   }
 
 }

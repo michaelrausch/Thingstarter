@@ -9,6 +9,7 @@ export class RewardComponent implements OnInit {
   @Input() amount;
   @Input() description;
   @Input() isCustomPledge = false;
+  @Input() pledgeDisabled = true;
 
   constructor() { }
 

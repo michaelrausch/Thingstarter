@@ -16,6 +16,9 @@ export class BasicDetailsComponent implements OnInit {
 
   onSubmit(){
     this.projectCreationFormService.setFormLocation(FormLocation.REWARDS);
+
+    this.model.target = this.model.target * 100;
+
     this.projectCreationFormService.addBasicProjectInfo(this.model);
   }
 }

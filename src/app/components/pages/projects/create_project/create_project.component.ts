@@ -22,4 +22,20 @@ export class CreateProjectPageComponent implements OnInit {
     this.projectCreationFormService.reset();
   }
 
+  private getPageTitle(){
+    switch(this.projectCreationFormService.getFormLocation()){
+      case FormLocation.BASIC_INFO:
+        return "Create Project";
+
+      case FormLocation.REWARDS:
+        return "Add Rewards";
+
+      case FormLocation.UPLOAD_IMAGE:
+        return "Upload an image"
+
+      default:
+        return "Create Project";
+    }
+  }
+
 }
