@@ -22,4 +22,9 @@ export class MenuComponent implements OnInit {
     this.loginService.logout();
   }
 
+  menuShouldBeTransparent(){
+    console.log("asdsad")
+    return document.body.scrollTop == 0; 
+  }
+
 }

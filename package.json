@@ -24,6 +24,8 @@
     "@angular/platform-browser": "4.4.4",
     "@angular/platform-browser-dynamic": "4.4.4",
     "@angular/router": "4.4.4",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.3",
     "angular2-flash-messages": "^1.0.8",
     "core-js": "2.5.1",
     "ngx-cookie-service": "^1.0.9",

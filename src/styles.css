@@ -225,3 +225,19 @@ h3{
 .backToTopButton:hover {
     background-color: #555; /* Add a dark-grey background on hover */
 }
+
+.no-projects-error{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.no-projects-error i {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.no-projects-error h3 {
+    margin-bottom: 50px;    
+}

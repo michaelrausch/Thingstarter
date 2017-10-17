@@ -25,6 +25,9 @@ export class ExplorePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.projectService.setBackerFilterEnabled(false);
+    this.projectService.setCreatorFilterEnabled(false);
+    
     this.projectService.resetChunks();
     this.projectService.loadNextChunk();
   }
@@ -46,23 +49,50 @@ export class ExplorePageComponent implements OnInit {
     this.showLoadingAnimation = false;
   }
 
-  toggleProjectsBacked(){
-    this.showProjectsBacked = !this.showProjectsBacked;
+  filterAllProjects(){
+    this.showProjectsBacked = false;
+    this.showProjectsCreated = false;
+    //this.projectService.setOnlyLoadOpenProjects(true);
     
+    this.reloadProjects();
+  }
+
+  filterBackedProjects(){
+    this.showProjectsBacked = true;
+    this.showProjectsCreated = false;
+    //this.projectService.setOnlyLoadOpenProjects(false);
+    
+
+    this.reloadProjects();
+  }
+
+  filterCreatedProjects(){ 
+    this.showProjectsBacked = false;
+    this.showProjectsCreated = true;
+    //this.projectService.setOnlyLoadOpenProjects(false);
+
+    this.reloadProjects();
+  }
+
+  reloadProjects(){
+    this.projectService.setCreatorFilterEnabled(this.showProjectsCreated);
+    this.projectService.setCreatorFilter(this.loginService.userId.toString());
+
     this.projectService.setBackerFilterEnabled(this.showProjectsBacked);
-    this.projectService.setBackerFilter(this.loginService.userId.toString())
+    this.projectService.setBackerFilter(this.loginService.userId.toString());
+
 
     this.projectService.resetChunks();
     this.projectService.loadNextChunk();
   }
 
-  toggleProjectsCreated(){ 
-    this.showProjectsCreated = !this.showProjectsCreated;
-  
-    this.projectService.setCreatorFilterEnabled(this.showProjectsCreated);
-    this.projectService.setCreatorFilter(this.loginService.userId.toString())
+  getFilterButtonLabel(){
+    if (this.showProjectsBacked) return "Filter (Backed Projects)";
+    if (this.showProjectsCreated) return "Filter (Created Projects)";
+    return "Filter (All Projects)"
+  }
 
-    this.projectService.resetChunks();
-    this.projectService.loadNextChunk();
+  thereAreProjectsAvailable(){
+    return this.projectService.getProjectBriefs().length != 0;
   }
 }

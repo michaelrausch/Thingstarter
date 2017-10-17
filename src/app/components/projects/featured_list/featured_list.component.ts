@@ -13,4 +13,8 @@ export class FeaturedListComponent implements OnInit {
   ngOnInit() {
   }
 
+  thereAreProjectsAvailable(){
+    return this.projectService.getFeaturedProjects().length == 0;
+  }
+
 }

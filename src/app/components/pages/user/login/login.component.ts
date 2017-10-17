@@ -12,6 +12,7 @@ export class LoginPageComponent implements OnInit {
   hadError: boolean = false;
   errorMessage: string = "";
   isLoggingIn: boolean = false;
+  loginRedirect: string;
 
   model: UserLogin = new UserLogin("","");
 
@@ -20,7 +21,12 @@ export class LoginPageComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    if(this.loginService.isLoggedIn()){
+      this.router.navigate(['./']);
+    }
 
+    this.loginRedirect = this.loginService.getPostLoginRedirect();
+    this.loginService.clearPostLoginRedirect();
   }
 
   onSubmit(){
@@ -29,7 +35,14 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(this.model.username, this.model.password)
         .subscribe(success => {
             this.isLoggingIn = false;          
-            this.router.navigate(['./']);
+            
+            if (this.loginRedirect){
+              this.router.navigate([this.loginRedirect]);
+              this.loginService.clearPostLoginRedirect();              
+            }
+            else{
+              this.router.navigate(['./']);
+            }
         },
         error => {
             this.isLoggingIn = false;

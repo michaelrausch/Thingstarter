@@ -55,8 +55,6 @@ export class ProjectService {
      * @param projects The list of projects to process
      */
     private processProjectsResponse(projects: ProjectBrief[], applySearchFilter: boolean){
-        var projectsToShow: ProjectBrief[] = new Array();
-
         for(let project of projects){
             project.imageUri = environment.api_base_url + project.imageUri;
         }
@@ -97,7 +95,7 @@ export class ProjectService {
      * Get a list of featured projects
      */
     public getFeaturedProjects(){
-        return this.featuredProjects;
+        return this.featuredProjects ? this.featuredProjects : [];
     }
 
     /**
@@ -107,7 +105,7 @@ export class ProjectService {
         if (this.projectBriefs == undefined || this.projectBriefs.length == 0){
             this.loadNextChunk();
         }
-        return this.projectBriefs;
+        return this.projectBriefs ? this.projectBriefs : [];
     }
 
     /**
@@ -182,6 +180,10 @@ export class ProjectService {
 
     public setBackerFilterEnabled(isEnabled: boolean){
         this.filterByBacker = isEnabled;
+    }
+
+    public setOnlyLoadOpenProjects(onlyLoadOpen: boolean){
+        this.onlyLoadOpenProjects = onlyLoadOpen;
     }
 
     /**

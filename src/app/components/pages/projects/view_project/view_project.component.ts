@@ -32,7 +32,9 @@ export class ViewProjectPageComponent implements OnInit {
         this.project = project as Project;
         this.creationDateString = this.formatCreationDate(this.project.creationDate);
       }, error => {
-        alert(error);
+        console.log("Error");
+        
+        this.router.navigate(['./explore']);
       });
   }
 

@@ -21,7 +21,7 @@ export class UpdateImageElementComponent implements OnInit {
     let fileList: FileList = event.target.files;
     
     if(fileList.length > 0) {
-        this.file = fileList[0];
+        this.file = fileList[0];        
     }
   }
 

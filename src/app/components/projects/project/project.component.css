@@ -22,4 +22,9 @@
 }
 .project-card-title{
     font-family: "circ-black";
+    word-wrap: break-word;
+}
+
+.wrap-text {
+    word-wrap: break-word;    
 }

@@ -15,6 +15,9 @@ export class LoginService {
     userId: number = 0;
     token: string = "";
     userData: UserDetailResponse;
+    loginFlashMessage: string;
+    postLoginRedirect: string;
+    postLoginRedirectValid: boolean;
 
     constructor(private http: HttpClient, private router: Router) {
         let token = localStorage.getItem("loginToken");
@@ -25,8 +28,6 @@ export class LoginService {
             this.token = token;
             this.loadUserData(token, userId);
         }
-
-        console.log(token);
     }
 
     /**
@@ -41,13 +42,15 @@ export class LoginService {
      * @param username 
      * @param password 
      */
-    login(username: string, password: string){
+    login(username: string, password: string, shouldRedirect: boolean = false){
         return Observable.create(observer => {
             this.doLoginRequest(username, password)
                 .subscribe(data => {
                     this.handleLoginSuccess(data);
                     observer.next();
-                    this.doPostLoginRedirect();
+
+                    //if (shouldRedirect) this.doPostLoginRedirect();
+                    //this.clearPostLoginRedirect();
                 },
                 err => {
                     observer.error(err);
@@ -166,10 +169,14 @@ export class LoginService {
      * Redirect to the route stored in postLoginRedirect if it is set
      */
     private doPostLoginRedirect(){
-        if (this.isLoggedIn() && localStorage.getItem("postLoginRedirect")){
-            this.router.navigate([localStorage.getItem('postLoginRedirect')]);
-            localStorage.setItem("postLoginRedirect", undefined);
+        if (this.isLoggedIn() && this.postLoginRedirect && this.postLoginRedirectValid){
+            this.router.navigate([this.postLoginRedirect]);
+            this.clearPostLoginRedirect();
         }
+    }
+
+    getPostLoginRedirect(){
+        return this.postLoginRedirect;
     }
 
     /**
@@ -177,7 +184,14 @@ export class LoginService {
      * @param route The route to redirect to
      */
     setPostLoginRedirect(route: string){
-        localStorage.setItem("postLoginRedirect", route);
+        this.postLoginRedirect = route;
+    }
+
+    /**
+     * Remove the post login redirect
+     */
+    clearPostLoginRedirect(){
+        this.postLoginRedirect = undefined;
     }
 
     /**
@@ -185,5 +199,25 @@ export class LoginService {
      */
     redirectToLogin(){
         this.router.navigate(['./login']);
+    }
+
+    /**
+     * Set the message to appear when the user is redirected
+     * to the login
+     * @param message the login message
+     */
+    setLoginFlash(message: string){
+        this.loginFlashMessage = message;
+    }
+
+    getLoginFlashMessage(message: string){
+        var message = this.loginFlashMessage;
+        this.loginFlashMessage = "";
+
+        return message;
+    }
+
+    hasLoginFlashMessage(){
+        return this.loginFlashMessage && this.loginFlashMessage != ""
     }
 }

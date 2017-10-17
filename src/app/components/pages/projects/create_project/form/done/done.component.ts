@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { ProjectCreationFormService } from 'app/services/project-creation-form.service';
 
 @Component({
   selector: 'app-create-project-done',
@@ -8,11 +9,11 @@ import { Router } from "@angular/router";
 })
 export class DoneComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private formCreationService: ProjectCreationFormService) { }
 
   ngOnInit() {
     setTimeout( _ => {
-      this.router.navigate(['./explore']);
+      this.router.navigate(['./project/' + this.formCreationService.getProjectId()]);
     }, 1000);
   }
 

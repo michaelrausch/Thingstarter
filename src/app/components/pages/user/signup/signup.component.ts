@@ -43,8 +43,16 @@ export class SignupPageComponent implements OnInit {
 
         this.loginService.login(this.model.username, this.model.password)
             .subscribe(data => {
-                this.isSigningUp = false;                
-                this.router.navigate(['./']);
+                this.isSigningUp = false;      
+
+                var redirect = this.loginService.getPostLoginRedirect();
+
+                if (redirect){
+                    this.router.navigate([redirect]);
+                }
+                else{
+                    this.router.navigate(['./']);
+                }
             },
             error => {
                 this.isSigningUp = false;                
