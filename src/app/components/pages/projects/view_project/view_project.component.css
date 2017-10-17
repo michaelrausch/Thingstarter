@@ -13,6 +13,7 @@
     font-weight: 900;
     font-family: "circ-black";
     color: #5C5C5C;
+    word-wrap: break-word;
 }
 
 .projectDescription{
@@ -22,6 +23,8 @@
     overflow-x: hidden;
     height: 336px;
     padding-right: 12px;
+    word-wrap: break-word;
+    
 }
 
 

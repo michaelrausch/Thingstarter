@@ -47,6 +47,20 @@
     margin-left: 0 !important;
 }
 
+.alert-info {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #ffffff;
+}
+
+.alert-info hr {
+    border-top-color: #258cd1;
+}
+
+.alert-info .alert-link {
+    color: #e6e6e6;
+}
+
 .form-message{
     margin: 0 auto;
     max-width: 480px;
@@ -56,7 +70,6 @@
 
 /*
     Buttons
-
 */
 .btn-rounded{
     border-radius: 500px;

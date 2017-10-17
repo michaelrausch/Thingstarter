@@ -52,7 +52,7 @@ export class ExplorePageComponent implements OnInit {
   filterAllProjects(){
     this.showProjectsBacked = false;
     this.showProjectsCreated = false;
-    //this.projectService.setOnlyLoadOpenProjects(true);
+    this.projectService.setOnlyLoadOpenProjects(true);
     
     this.reloadProjects();
   }
@@ -60,7 +60,7 @@ export class ExplorePageComponent implements OnInit {
   filterBackedProjects(){
     this.showProjectsBacked = true;
     this.showProjectsCreated = false;
-    //this.projectService.setOnlyLoadOpenProjects(false);
+    this.projectService.setOnlyLoadOpenProjects(false);
     
 
     this.reloadProjects();
@@ -69,7 +69,7 @@ export class ExplorePageComponent implements OnInit {
   filterCreatedProjects(){ 
     this.showProjectsBacked = false;
     this.showProjectsCreated = true;
-    //this.projectService.setOnlyLoadOpenProjects(false);
+    this.projectService.setOnlyLoadOpenProjects(false);
 
     this.reloadProjects();
   }

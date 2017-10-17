@@ -16,6 +16,7 @@ export class CreateProjectPageComponent implements OnInit {
   ngOnInit() {
     if (!this.loginService.isLoggedIn()){
       this.loginService.setPostLoginRedirect('./create');
+      this.loginService.setLoginFlash("You must log in before you can create a project");      
       this.loginService.redirectToLogin();
     }
 

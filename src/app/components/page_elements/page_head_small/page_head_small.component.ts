@@ -10,6 +10,7 @@ export class PageHeadSmallComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   @Input() title: string;

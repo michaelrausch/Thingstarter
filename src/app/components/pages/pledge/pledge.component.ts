@@ -26,6 +26,7 @@ export class PledgeComponent implements OnInit {
   ngOnInit() {
     if(!this.loginService.isLoggedIn()){
       this.loginService.setPostLoginRedirect(this.router.url);
+      this.loginService.setLoginFlash("You must log in before you can pledge");
       this.loginService.redirectToLogin();
     }
 

@@ -13,6 +13,8 @@ export class LoginPageComponent implements OnInit {
   errorMessage: string = "";
   isLoggingIn: boolean = false;
   loginRedirect: string;
+  hasFlashMessage: boolean = false;
+  flashMessage: string = "";
 
   model: UserLogin = new UserLogin("","");
 
@@ -27,6 +29,9 @@ export class LoginPageComponent implements OnInit {
 
     this.loginRedirect = this.loginService.getPostLoginRedirect();
     this.loginService.clearPostLoginRedirect();
+
+    this.hasFlashMessage = this.loginService.hasLoginFlashMessage();
+    this.flashMessage = this.loginService.getLoginFlashMessage();
   }
 
   onSubmit(){

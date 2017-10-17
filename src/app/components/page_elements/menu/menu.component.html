@@ -1,19 +1,21 @@
 <nav class="menu navbar navbar-toggleable-md navbar-inverse fixed-top customcolor">
-  <a class="navbar-brand" routerLink="/">KickStarted</a>
-
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/create">Start a project</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/explore">Explore</a>
-      </li>
-    </ul>
-
-    <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/login">Login</a>
-    <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/signup">Signup</a>
-
-    <a *ngIf="isLoggedIn() && loginService.userData != undefined" class="nav-link my-2 my-sm-0 login-signup-btn" href="#" (click)="doLogout()">Logout, {{ loginService.userData.username }}</a>
-  </div>
+      <a class="navbar-brand" routerLink="/">
+        <img src="../../../../assets/logo.png" alt="">
+      </a>
+    
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/create">Start a project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/explore">Explore</a>
+          </li>
+        </ul>
+    
+        <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/login">Login</a>
+        <a *ngIf="!isLoggedIn()" class="nav-link my-2 my-sm-0 login-signup-btn" routerLink="/signup">Signup</a>
+    
+        <a *ngIf="isLoggedIn() && loginService.userData != undefined" class="nav-link my-2 my-sm-0 login-signup-btn" href="#" (click)="doLogout()">Logout, {{ loginService.userData.username }}</a>
+      </div>  
 </nav>

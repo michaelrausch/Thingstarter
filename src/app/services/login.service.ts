@@ -210,7 +210,7 @@ export class LoginService {
         this.loginFlashMessage = message;
     }
 
-    getLoginFlashMessage(message: string){
+    getLoginFlashMessage(){
         var message = this.loginFlashMessage;
         this.loginFlashMessage = "";
 

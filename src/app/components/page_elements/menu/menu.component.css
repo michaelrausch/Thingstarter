@@ -24,3 +24,8 @@
 .menu{
     height:60px;
 }
+
+img {
+    margin-top: -5px;
+    height: 15px;
+}

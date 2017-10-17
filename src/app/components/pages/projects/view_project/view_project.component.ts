@@ -84,7 +84,8 @@ export class ViewProjectPageComponent implements OnInit {
 
   private closeProject(){
     this.project.open = false;
-    //this.loadProject(this.projectId);
+    this.projectService.closeProject(this.projectId).subscribe();
+    window.scrollTo(0, 0);
   }
 
   private customPledgeClicked(){

@@ -309,5 +309,18 @@ export class ProjectService {
             })
         });
     }
+
+    public closeProject(id: number){
+        return new Observable(observer => {
+            if (!this.loginService.isLoggedIn()) return observer.error({error: "Not logged in"});
+
+            this.http.put(environment.api_base_url + "projects/" + id, { open: false}, { headers: this.loginService.getAuthHeaders(), responseType: "text" })
+                .subscribe(data => {
+                    return observer.next({});
+                }, error => {
+                    return observer.error({error: error.error});
+                })
+        });
+    }
 }
 
