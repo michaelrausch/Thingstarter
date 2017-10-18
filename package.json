@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
-    "dev": "ng serve --port 8080 --env=uni",
+    "dev": "ng serve --port 8080 --env=prod",
     "start": "http-server dist/",
     "heroku-prebuild": "npm install -g http-server angular-cli",
     "heroku-postbuild": "ng build",
