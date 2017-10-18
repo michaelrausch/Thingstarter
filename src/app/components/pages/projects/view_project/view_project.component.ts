@@ -31,9 +31,7 @@ export class ViewProjectPageComponent implements OnInit {
       .subscribe(project => {
         this.project = project as Project;
         this.creationDateString = this.formatCreationDate(this.project.creationDate);
-      }, error => {
-        console.log("Error");
-        
+      }, error => {       
         this.router.navigate(['./explore']);
       });
   }

@@ -1,12 +1,12 @@
 {
-  "name": "seng365-crowdfunding-app",
-  "version": "0.8.0",
+  "name": "ThingStarter",
+  "version": "1.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
-    "dev": "ng serve --port 8080 --env=prod",
+    "dev": "ng serve --port 8080",
     "start": "http-server dist/",
     "heroku-prebuild": "npm install -g http-server angular-cli",
     "heroku-postbuild": "ng build",

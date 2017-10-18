@@ -62,7 +62,7 @@ export class ProjectService {
             }
 
             else{
-                project.imageUri = environment.api_base_url + project.imageUri;                
+                project.imageUri = environment.api_base_url + project.imageUri.slice(1);                
             }
 
         }
@@ -227,7 +227,7 @@ export class ProjectService {
             this.http.get<Project>(environment.api_base_url + "projects/" + id)
                 .subscribe(data => {
                     if (data.imageUri == undefined){
-                        data.imageUri = 'assets/no_image.png';
+                        data.imageUri = '/assets/no_image.png';
                     }
                     else{
                         data.imageUri = environment.api_base_url + data.imageUri;
