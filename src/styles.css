@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: "circ-black";
     src: url('/assets/fonts/cb.woff2') format("woff");
@@ -211,32 +210,6 @@ h3{
     font-weight: 500;
     font-size: 17px;
     color: #626369;
-}
-
-.goldGradient{
-    background: #F7971E !important;  /* fallback for old browsers */ 
-    background: -webkit-linear-gradient(to right, #FFD200, #F7971E) !important;  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFD200, #F7971E) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.backToTopButton {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 50px; /* Place the button at the bottom of the page */
-    right: 50px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: red; /* Set a background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 15px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-}
-
-.backToTopButton:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
 }
 
 .no-projects-error{

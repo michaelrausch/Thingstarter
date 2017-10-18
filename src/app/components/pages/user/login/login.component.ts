@@ -37,7 +37,9 @@ export class LoginPageComponent implements OnInit {
   onSubmit(){
     this.isLoggingIn = true;
 
-    this.loginService.login(this.model.username, this.model.password)
+    var isEmail: boolean = this.model.username.indexOf('@') > 0;
+
+    this.loginService.login(this.model.username, this.model.password, isEmail)
         .subscribe(success => {
             this.isLoggingIn = false;          
             

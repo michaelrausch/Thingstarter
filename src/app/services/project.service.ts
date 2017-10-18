@@ -56,17 +56,29 @@ export class ProjectService {
      */
     private processProjectsResponse(projects: ProjectBrief[], applySearchFilter: boolean){
         for(let project of projects){
-            project.imageUri = environment.api_base_url + project.imageUri;
+
+            if (project.imageUri == undefined){
+                project.imageUri = 'assets/no_image.png';
+            }
+
+            else{
+                project.imageUri = environment.api_base_url + project.imageUri;                
+            }
+
         }
 
         return projects;
     }
 
+    /**
+     * Process a project response from the server
+     * @param project 
+     */
     private processProjectResponse(project: Project){
         var anonPledgeAmount = 0;
         var pledges: Backer[] = new Array();
 
-        // TODO remove magic number
+        // Get the first 5 backers
         project.backers = project.backers.slice(0, 5);
 
         for (let pledge of project.backers){
@@ -116,7 +128,7 @@ export class ProjectService {
      */
     public loadNextChunk(){
         if (this.isLoadingProjects) return;
-        if (this.reachedEnd) return;
+        if (this.reachedEnd) return;       
 
         this.isLoadingProjects = true;
 
@@ -142,24 +154,26 @@ export class ProjectService {
             this.isLoadingProjects = false;
             this.currentIndex += this.chunkSize;
         }, error =>{
-            console.log(error);
             this.isLoadingProjects = false;
         });
     }
 
+    /**
+     * Build the parameters used in GET /projects
+     */
     private buildParams() : HttpParams{
         var params = new HttpParams();
 
         params = params.set("startIndex", this.currentIndex.toString());
         params = params.append("count", this.chunkSize.toString());
 
-        params = params.append("open", this.onlyLoadOpenProjects ? "true" : "false");
+        if (this.onlyLoadOpenProjects) params = params.append("open", this.onlyLoadOpenProjects ? "true" : "false");
 
         if (this.filterByCreator) {
             params = params.append("creator", this.creatorFilter);
         }
 
-        if (this.filterByBacker) {
+        if (this.filterByBacker) {           
             params = params.append("backer", this.backerFilter);
         }
 
@@ -203,11 +217,22 @@ export class ProjectService {
         return this.reachedEnd;
     }
 
+    /**
+     * Get a projects details
+     * 
+     * @param id The projects ID
+     */
     public getProject(id: number){
         return new Observable(observer => {
             this.http.get<Project>(environment.api_base_url + "projects/" + id)
                 .subscribe(data => {
-                    data.imageUri = environment.api_base_url + data.imageUri;
+                    if (data.imageUri == undefined){
+                        data.imageUri = 'assets/no_image.png';
+                    }
+                    else{
+                        data.imageUri = environment.api_base_url + data.imageUri;
+                    }
+                    
                     data = this.processProjectResponse(data);
                     observer.next(data);
                 },
@@ -217,10 +242,23 @@ export class ProjectService {
         });
     }
 
+    /**
+     * Navigate to a projects pledge page
+     * @param id The projects ID
+     */
     public startPledgeToProject(id: number){
         this.router.navigate(['./project/' + id + '/pledge']);
     }
 
+    /**
+     * Pledge to a project
+     * 
+     * @param id The projects ID
+     * @param userId The users ID
+     * @param amount The amount to pledge (in cents)
+     * @param isAnon Whether or not the pledge is anonymous
+     * @param token The users login Token
+     */
     public pledge(id: number, userId: number, amount: number, isAnon: boolean, token: string){
         return new Observable(observer => {
             if (!localStorage.getItem("loginToken")) return observer.error({
@@ -251,16 +289,29 @@ export class ProjectService {
         });
     }
 
+    /**
+     * Set the amount the user pledged
+     */
     public setPledgeAmount(pledgeAmount: number){
         localStorage.setItem("pledgeAmount", pledgeAmount.toString());
     }
 
+    /**
+     * Get the amount the user pledged
+     */
     public getPledgeAmount(){
         var pledgeAmount = localStorage.getItem("pledgeAmount");
         localStorage.setItem('PledgeAmount', undefined);
         return +pledgeAmount;
     }
 
+    /**
+     * Add a project
+     * 
+     * @param projectInfo 
+     * @param rewards 
+     * @param userId UserID of the creator
+     */
     public addProject(projectInfo: BasicProjectInfo, rewards: Reward[], userId: number){
         for (let reward of rewards){
             reward.amount = +reward.amount;
@@ -294,6 +345,13 @@ export class ProjectService {
         });
     }
 
+    /**
+     * Upload an image for a project
+     * 
+     * @param id The projects ID
+     * @param userId The project owners ID
+     * @param file The image file
+     */
     public uploadImageForProject(id: number, userId: number, file: File){
         return new Observable(observer => {
             if (file.type != "image/jpeg" && file.type !="image/png") return observer.error({
@@ -310,6 +368,10 @@ export class ProjectService {
         });
     }
 
+    /**
+     * Close a project with a given ID
+     * @param id - The projects id
+     */
     public closeProject(id: number){
         return new Observable(observer => {
             if (!this.loginService.isLoggedIn()) return observer.error({error: "Not logged in"});

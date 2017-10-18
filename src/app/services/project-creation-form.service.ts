@@ -35,11 +35,6 @@ export class ProjectCreationFormService {
 
     public addProject(){
         return this.projectService.addProject(this.basicProjectInfo, this.rewards, this.loginService.userId)
-            // .subscribe(data => {
-            //     this.errorCreatingProject = false;
-            // }, error=> {
-            //     this.errorCreatingProject = true;
-            // })
     }
 
     public setProjectId(id: number){

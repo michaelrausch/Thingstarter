@@ -1,6 +1,5 @@
-
 <div class="card project-card" style="width: 340px;">
-  <img class="card-img-top project-card-img" [src]="easterEgg ? 'https://i.giphy.com/media/l41lPd4rlOlw1lRqU/giphy.webp' : imageUri" alt="Card image cap" onerror="this.src='http://borkborkiamdoggo.com/wp-content/uploads/2017/01/doin-your-dreams-a-concern-heck.jpg'"/>
+  <img class="card-img-top project-card-img" [src]="imageUri" alt="Card image cap"/>
 
   <div class="card-block">
     <h4 class="card-title project-card-title wrap-text">{{ title }}</h4>
@@ -8,4 +7,3 @@
     <a routerLink="/project/{{id}}" class="btn btn-outline-primary">View Project</a>
   </div>
 </div>
-  <div (konami)="setEasterEgg()"></div>

@@ -42,9 +42,9 @@ export class LoginService {
      * @param username 
      * @param password 
      */
-    login(username: string, password: string, shouldRedirect: boolean = false){
+    login(username: string, password: string, isEmail: boolean = false){
         return Observable.create(observer => {
-            this.doLoginRequest(username, password)
+            this.doLoginRequest(username, password, isEmail)
                 .subscribe(data => {
                     this.handleLoginSuccess(data);
                     observer.next();
@@ -63,10 +63,21 @@ export class LoginService {
      * @param username 
      * @param password 
      */
-    private doLoginRequest(username: string, password: string){
+    private doLoginRequest(username: string, password: string, isEmail: boolean = false){
+        var params: HttpParams;
+
+        if (isEmail){
+            params = new HttpParams().set("email", username);
+        }
+        else{
+            params = new HttpParams().set("username", username);
+        }
+
+        params = params.append("password", password)
+
         let apiUrl = environment.api_base_url + "users/login/";
         return this.http.post<LoginResponse>(apiUrl, {}, {
-            params: new HttpParams().set("username", username).append("password", password)
+            params: params
         });
     }
  

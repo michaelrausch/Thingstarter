@@ -27,6 +27,7 @@ export class ExplorePageComponent implements OnInit {
   ngOnInit() {
     this.projectService.setBackerFilterEnabled(false);
     this.projectService.setCreatorFilterEnabled(false);
+    this.projectService.setOnlyLoadOpenProjects(true);
     
     this.projectService.resetChunks();
     this.projectService.loadNextChunk();
@@ -61,9 +62,8 @@ export class ExplorePageComponent implements OnInit {
     this.showProjectsBacked = true;
     this.showProjectsCreated = false;
     this.projectService.setOnlyLoadOpenProjects(false);
-    
 
-    this.reloadProjects();
+    this.reloadProjects();    
   }
 
   filterCreatedProjects(){ 
@@ -80,7 +80,6 @@ export class ExplorePageComponent implements OnInit {
 
     this.projectService.setBackerFilterEnabled(this.showProjectsBacked);
     this.projectService.setBackerFilter(this.loginService.userId.toString());
-
 
     this.projectService.resetChunks();
     this.projectService.loadNextChunk();

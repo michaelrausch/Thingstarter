@@ -13,9 +13,13 @@
     <h2 class="form-heading">Pledge Confirmation</h2>
 
     <div class="form-group">
+        <small *ngIf="pledge.errors && (pledge.dirty || pledge.touched)" class="text-muted">
+            <div [hidden]="!pledge.errors.required">Subtitle is required</div>
+            <div [hidden]="!pledge.errors.pattern">Target must be in the format $12.34</div>             
+        </small>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0" id="plege_amount_fi">
         <div class="input-group-addon">Pledge Amount $</div>
-        <input name="pledgeAmount" type="text" class="form-control"  [(ngModel)]="pledgeAmount">
+        <input name="pledgeAmount" type="text" class="form-control" #pledge="ngModel"  [(ngModel)]="pledgeAmount" pattern="[0-9]+[.][0-9][0-9]" required="">
       </div>
     </div>
 
@@ -30,7 +34,7 @@
       </label>      
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block btn-square form-submit-button" type="submit">
+    <button class="btn btn-lg btn-primary btn-block btn-square form-submit-button" type="submit" [disabled]="!pledgeForm.form.valid">
         Pledge
         <span><i *ngIf="isProcessing" class="fa fa-spinner fa-pulse"></i></span>            
     </button>   

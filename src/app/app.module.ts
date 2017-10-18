@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { KonamiModule } from 'ngx-konami';
 import { Ng2FittextModule } from "ng2-fittext/ng2fittext";
 
 /*
@@ -121,7 +120,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     FlashMessagesModule,
     InfiniteScrollModule,
-    KonamiModule,
     Ng2FittextModule
   ],
   providers: [LoginService, ProjectService, ProjectCreationFormService],
