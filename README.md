@@ -4,13 +4,13 @@ Live Site: http://365.heroku.michaelrausch.nz/
 
 |Story |Status|
 |---|---|
-|1. View all projects|All ACs met except search & closed projects only|
-|2. View project info|All ACs met except for issues|
+|1. View all projects|All ACs met|
+|2. View project info|All ACs met|
 |3. Register|All ACs met|
 |4. Login|All ACs met|
-|5. Pledge |All ACs met except for issues|
-|6. Project creation |Most ACs met|
-|7. Filtering |Not started|
+|5. Pledge |All ACs met|
+|6. Project creation |All ACs met|
+|7. Filtering |All ACs met|
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
