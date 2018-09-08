@@ -9,7 +9,7 @@ import { ProjectCreationFormService } from 'app/services/project-creation-form.s
 })
 export class DoneComponent implements OnInit {
 
-  constructor(private router: Router, private formCreationService: ProjectCreationFormService) { }
+  constructor(public router: Router, public formCreationService: ProjectCreationFormService) { }
 
   ngOnInit() {
     setTimeout( _ => {

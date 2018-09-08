@@ -10,12 +10,12 @@ import { LoginService } from "app/services/login.service";
   styleUrls: ['./view_project.component.css']
 })
 export class ViewProjectPageComponent implements OnInit {
-  private project: Project;
-  private userId: number;
-  private projectId: number;
-  private creationDateString: string = "";  
+  project: Project;
+  userId: number;
+  projectId: number;
+  creationDateString: string = "";  
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private loginService: LoginService, private router: Router) { }
+  constructor(public route: ActivatedRoute, public projectService: ProjectService, public loginService: LoginService, public router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -26,7 +26,7 @@ export class ViewProjectPageComponent implements OnInit {
     this.loadProject(this.projectId);
   }
 
-  private loadProject(id: number){
+  loadProject(id: number){
     this.projectService.getProject(id)
       .subscribe(project => {
         this.project = project as Project;
@@ -36,7 +36,7 @@ export class ViewProjectPageComponent implements OnInit {
       });
   }
 
-  private formatCreationDate(creationDate: number){
+  formatCreationDate(creationDate: number){
     var date = new Date(creationDate);
     var month = "";
 
@@ -57,7 +57,7 @@ export class ViewProjectPageComponent implements OnInit {
     return "" + date.getDate() + " " +  month + " " + date.getFullYear();
   }
 
-  private isOwner(){    
+  isOwner(){    
     for (let creator of this.project.creators){
       if (creator.id == this.loginService.userId) return true;
     }
@@ -65,7 +65,7 @@ export class ViewProjectPageComponent implements OnInit {
     return false;
   }
 
-  private eligibleToPledge(){
+  eligibleToPledge(){
     if (!this.project.open) return false;
     
     if (this.isOwner()) return false;
@@ -73,20 +73,20 @@ export class ViewProjectPageComponent implements OnInit {
     return true;
   }
 
-  private pledgeClicked(amount: number){
+  pledgeClicked(amount: number){
     if (!this.eligibleToPledge()) return;
 
     this.projectService.setPledgeAmount(amount);
     this.projectService.startPledgeToProject(this.project.id);
   }
 
-  private closeProject(){
+  closeProject(){
     this.project.open = false;
     this.projectService.closeProject(this.projectId).subscribe();
     window.scrollTo(0, 0);
   }
 
-  private customPledgeClicked(){
+  customPledgeClicked(){
     localStorage.setItem('pledgeAmount', undefined);
     this.router.navigate(['/project/' + this.projectId + '/pledge']);
   }

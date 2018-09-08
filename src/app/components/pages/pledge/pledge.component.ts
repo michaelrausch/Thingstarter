@@ -21,7 +21,7 @@ export class PledgeComponent implements OnInit {
   pledgeAmount: number = 0;
   isAnon: boolean = false;
 
-  constructor(private route: ActivatedRoute, private loginService: LoginService, private router: Router, private projectService: ProjectService) { }
+  constructor(public route: ActivatedRoute, public loginService: LoginService, public router: Router, public projectService: ProjectService) { }
 
   ngOnInit() {
     if(!this.loginService.isLoggedIn()){
@@ -68,7 +68,7 @@ export class PledgeComponent implements OnInit {
     });
   }
 
-  private processTransactionResult(token: string){
+  processTransactionResult(token: string){
 
 
     this.projectService.pledge(+this.projectId, this.loginService.userId, this.pledgeAmount * 100, this.isAnon, token).subscribe(() =>{
@@ -79,14 +79,14 @@ export class PledgeComponent implements OnInit {
     });
   }
 
-  private showError(message: string){
+  showError(message: string){
     this.showMessage = true;
     this.wasError = true;
     this.resultMessage = message;
 
   }
 
-  private showSuccess(message: string){
+  showSuccess(message: string){
     this.showMessage = true;
     this.wasError = false;
     this.resultMessage = message;

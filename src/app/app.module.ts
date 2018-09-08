@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { Ng2FittextModule } from "ng2-fittext/ng2fittext";
+import { Ng2FittextModule } from "ng2-fittext";
 
 /*
  * Pages

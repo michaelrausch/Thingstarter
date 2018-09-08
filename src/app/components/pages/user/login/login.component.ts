@@ -18,8 +18,8 @@ export class LoginPageComponent implements OnInit {
 
   model: UserLogin = new UserLogin("","");
 
-  constructor(private loginService: LoginService, 
-              private router: Router,
+  constructor(public loginService: LoginService, 
+    public router: Router,
               ) { }
 
   ngOnInit() {

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  private currentStep: FormStep;
+  currentStep: FormStep;
+  formStep = FormStep;
 
   constructor() { 
     this.currentStep = FormStep.BASICS;

@@ -19,7 +19,7 @@ export class LoginService {
     postLoginRedirect: string;
     postLoginRedirectValid: boolean;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(public http: HttpClient, public router: Router) {
         let token = localStorage.getItem("loginToken");
         let userId = localStorage.getItem("userId");
 
@@ -63,7 +63,7 @@ export class LoginService {
      * @param username 
      * @param password 
      */
-    private doLoginRequest(username: string, password: string, isEmail: boolean = false){
+     doLoginRequest(username: string, password: string, isEmail: boolean = false){
         var params: HttpParams;
 
         if (isEmail){
@@ -88,7 +88,7 @@ export class LoginService {
      * 
      * @param data The response from the server
      */
-    private handleLoginSuccess(data){
+     handleLoginSuccess(data){
         this.token = data.token;
         this.isUserLoggedIn = true;
         this.userId = data.id;
@@ -102,7 +102,7 @@ export class LoginService {
      * Load the currently logged in users 
      * @param token the users login token
      */
-    private loadUserData(token: string, userId: string){
+     loadUserData(token: string, userId: string){
         this.http.get<UserDetailResponse>(environment.api_base_url + "users/" + userId,  { headers: this.getAuthHeaders() })
             .subscribe(data => {
                 this.userData = data;
@@ -125,7 +125,7 @@ export class LoginService {
      * Perform a signup request to the server
      * @param signupData The registration information
      */
-    private doSignupRequest(signupData: UserRegistration){
+     doSignupRequest(signupData: UserRegistration){
         return this.http.post<SignupResponse>(environment.api_base_url + "users/", signupData.asJson())
     }
 
@@ -148,7 +148,7 @@ export class LoginService {
     /**
      * Removes the users session data
      */
-    private removeSession(){
+     removeSession(){
         this.isUserLoggedIn = false;
         this.token = "";
         this.userId = 0;
@@ -158,7 +158,7 @@ export class LoginService {
     /**
      * Perform a logout request for the currently logged in user
      */
-    private doLogoutRequest(){
+     doLogoutRequest(){
         this.http.post(environment.api_base_url + "users/logout", {}, { headers: this.getAuthHeaders() })
             .subscribe(data => {
                 this.removeSession();
@@ -179,7 +179,7 @@ export class LoginService {
     /**
      * Redirect to the route stored in postLoginRedirect if it is set
      */
-    private doPostLoginRedirect(){
+     doPostLoginRedirect(){
         if (this.isLoggedIn() && this.postLoginRedirect && this.postLoginRedirectValid){
             this.router.navigate([this.postLoginRedirect]);
             this.clearPostLoginRedirect();

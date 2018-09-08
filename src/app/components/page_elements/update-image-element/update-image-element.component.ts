@@ -10,9 +10,10 @@ import { LoginService } from 'app/services/login.service';
 export class UpdateImageElementComponent implements OnInit {
   @Input() projectId;
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
-  private file: File;
+  file: File;
+  name: String;
 
-  constructor(private projectService: ProjectService, private loginService: LoginService) { }
+  constructor(public projectService: ProjectService, public loginService: LoginService) { }
 
   ngOnInit() {
   }

@@ -10,17 +10,17 @@ import { LoginService } from 'app/services/login.service';
   styleUrls: ['./explore_projects.component.css']
 })
 export class ExplorePageComponent implements OnInit {
-  private searchQuery: string = "";
-  private showLoadingAnimation: boolean = false;
-  private timer;
-  private timerSubscription;
+  searchQuery: string = "";
+  showLoadingAnimation: boolean = false;
+  timer;
+  timerSubscription;
 
-  private showProjectsBacked = false;
-  private showProjectsCreated = false;
+  showProjectsBacked = false;
+  showProjectsCreated = false;
 
-  private isInSearchMode: boolean = false;
+  isInSearchMode: boolean = false;
 
-  constructor(private projectService: ProjectService, private loginService: LoginService) { 
+  constructor(public projectService: ProjectService, public loginService: LoginService) { 
 
   }
 

@@ -4,14 +4,14 @@ import { LoginService } from "app/services/login.service";
 
 @Injectable()
 export class ProjectCreationFormService {
-    private formLocation: FormLocation;
+    formLocation: FormLocation;
 
-    private basicProjectInfo: BasicProjectInfo;
-    private rewards: Reward[];
-    private projectId: number;
-    private errorCreatingProject: boolean = false;
+    basicProjectInfo: BasicProjectInfo;
+    rewards: Reward[];
+    projectId: number;
+    errorCreatingProject: boolean = false;
 
-    constructor(private projectService: ProjectService, private loginService: LoginService) { }
+    constructor(public projectService: ProjectService, public loginService: LoginService) { }
 
     public reset(){
         this.formLocation = FormLocation.BASIC_INFO;

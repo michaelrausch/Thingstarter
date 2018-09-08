@@ -8,12 +8,12 @@ import { NgForm, NgModel, FormGroup } from '@angular/forms';
   styleUrls: ['./rewards.component.css']
 })
 export class RewardsComponent implements OnInit {
-  private formChanged: boolean = false;
-  private currentReward: Reward = new Reward;
-  private rewards: Reward[] = [];
-  private isProcessing: boolean = false;
+  formChanged: boolean = false;
+  currentReward: Reward = new Reward;
+  rewards: Reward[] = [];
+  isProcessing: boolean = false;
 
-  constructor(private projectCreationFormService: ProjectCreationFormService) { }
+  constructor(public projectCreationFormService: ProjectCreationFormService) { }
 
   ngOnInit() {
     

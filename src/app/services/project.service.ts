@@ -14,23 +14,23 @@ import { Backer } from 'app/services/responses/projects/Backer';
 
 @Injectable()
 export class ProjectService {
-    private projectBriefs: ProjectBrief[];
-    private featuredProjects: ProjectBrief[];
+    projectBriefs: ProjectBrief[];
+    featuredProjects: ProjectBrief[];
 
-    private isLoadingProjects: boolean = false;
-    private currentIndex: number = 0;
-    private chunkSize: number = 6;
-    private startAmount: number = 6;
-    private reachedEnd: boolean = false;
+    isLoadingProjects: boolean = false;
+    currentIndex: number = 0;
+    chunkSize: number = 6;
+    startAmount: number = 6;
+    reachedEnd: boolean = false;
 
-    private onlyLoadOpenProjects: boolean = true;
-    private creatorFilter: string;
-    private backerFilter: string;
-    private filterByBacker: boolean = false;
-    private filterByCreator: boolean = false;
-    private searchFilter: string = ""
+    onlyLoadOpenProjects: boolean = true;
+    creatorFilter: string;
+    backerFilter: string;
+    filterByBacker: boolean = false;
+    filterByCreator: boolean = false;
+    searchFilter: string = ""
 
-    constructor(private http: HttpClient, private router: Router, private loginService: LoginService) { 
+    constructor(public http: HttpClient, public router: Router, public loginService: LoginService) { 
         this.loadFeaturedProjects();
         this.projectBriefs = new Array();
     }
@@ -38,7 +38,7 @@ export class ProjectService {
     /**
      * Loads a list of initial projects
      */
-    private loadFeaturedProjects(){
+    loadFeaturedProjects(){
         this.http.get<ProjectBrief[]>(environment.api_base_url + "projects", { 
                 params: new HttpParams().set("startIndex", "0").append("count", this.startAmount.toString()).append("open", "true")
             })
@@ -54,7 +54,7 @@ export class ProjectService {
      * Appends the correct image path to the imageUri
      * @param projects The list of projects to process
      */
-    private processProjectsResponse(projects: ProjectBrief[], applySearchFilter: boolean){
+    processProjectsResponse(projects: ProjectBrief[], applySearchFilter: boolean){
         for(let project of projects){
 
             if (project.imageUri == undefined){
@@ -74,7 +74,7 @@ export class ProjectService {
      * Process a project response from the server
      * @param project 
      */
-    private processProjectResponse(project: Project){
+    processProjectResponse(project: Project){
         var anonPledgeAmount = 0;
         var pledges: Backer[] = new Array();
 
@@ -161,7 +161,7 @@ export class ProjectService {
     /**
      * Build the parameters used in GET /projects
      */
-    private buildParams() : HttpParams{
+    buildParams() : HttpParams{
         var params = new HttpParams();
 
         params = params.set("startIndex", this.currentIndex.toString());

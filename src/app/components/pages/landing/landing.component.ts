@@ -8,7 +8,7 @@ import { ProjectService } from "app/services/project.service";
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private projectService: ProjectService) { }
+  constructor(public projectService: ProjectService) { }
 
   ngOnInit() {
   }

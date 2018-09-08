@@ -36,7 +36,6 @@
 
   <button class="btn btn-lg btn-primary btn-block form-submit-button" type="submit" [disabled]="!basicDetailsForm.form.valid">
       {{basicDetailsForm.form.valid ? 'Now let\'s add some rewards' : 'Enter the projects details...'}}
-      <span *ngIf="isLoggingIn"><i class="fa fa-spinner fa-pulse"></i></span>            
   </button>   
 </form>
 

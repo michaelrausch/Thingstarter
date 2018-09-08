@@ -7,9 +7,9 @@ import { LoginService } from '../../../services/login.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private loggedInUserName: string;
+  loggedInUserName: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(public loginService: LoginService) { }
 
   ngOnInit() {
   }

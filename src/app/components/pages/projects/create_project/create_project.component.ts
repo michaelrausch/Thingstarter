@@ -9,9 +9,9 @@ import { ProjectCreationFormService, FormLocation } from "app/services/project-c
   styleUrls: ['./create_project.component.css']
 })
 export class CreateProjectPageComponent implements OnInit {
-  private formLocation = FormLocation;
+  formLocation = FormLocation;
 
-  constructor(private loginService: LoginService, private router: Router, private projectCreationFormService: ProjectCreationFormService) { }
+  constructor(public loginService: LoginService, public router: Router, public projectCreationFormService: ProjectCreationFormService) { }
 
   ngOnInit() {
     if (!this.loginService.isLoggedIn()){
@@ -23,7 +23,7 @@ export class CreateProjectPageComponent implements OnInit {
     this.projectCreationFormService.reset();
   }
 
-  private getPageTitle(){
+  getPageTitle(){
     switch(this.projectCreationFormService.getFormLocation()){
       case FormLocation.BASIC_INFO:
         return "Create Project";

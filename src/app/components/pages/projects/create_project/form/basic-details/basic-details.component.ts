@@ -7,9 +7,9 @@ import { ProjectCreationFormService, FormLocation, BasicProjectInfo } from "app/
   styleUrls: ['./basic-details.component.css']
 })
 export class BasicDetailsComponent implements OnInit {
-  private model: BasicProjectInfo = new BasicProjectInfo();
+  model: BasicProjectInfo = new BasicProjectInfo();
 
-  constructor(private projectCreationFormService: ProjectCreationFormService) { }
+  constructor(public projectCreationFormService: ProjectCreationFormService) { }
 
   ngOnInit() {
   }

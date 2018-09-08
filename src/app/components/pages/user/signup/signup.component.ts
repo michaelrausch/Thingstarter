@@ -18,7 +18,7 @@ export class SignupPageComponent implements OnInit {
     wasSuccess: boolean = false;
     isSigningUp: boolean = false;
 
-    constructor(private router: Router, private loginService: LoginService, private flashMessagesService: FlashMessagesService) { }
+    constructor(public router: Router, public loginService: LoginService, public flashMessagesService: FlashMessagesService) { }
 
     ngOnInit() {
     }

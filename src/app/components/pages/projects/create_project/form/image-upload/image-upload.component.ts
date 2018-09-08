@@ -9,12 +9,12 @@ import { LoginService } from "app/services/login.service";
   styleUrls: ['./image-upload.component.css']
 })
 export class ImageUploadComponent implements OnInit {
-  private imageFile: File;
-  private name: string;
-  private hasError: boolean = false;
-  private errorMessage: string = "";
+  imageFile: File;
+  name: string;
+  hasError: boolean = false;
+  errorMessage: string = "";
 
-  constructor(private projectService: ProjectService, private projectCreationFormService: ProjectCreationFormService, private loginService: LoginService) { }
+  constructor(public projectService: ProjectService, public projectCreationFormService: ProjectCreationFormService, public loginService: LoginService) { }
 
   ngOnInit() {
 
