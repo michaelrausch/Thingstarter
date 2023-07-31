@@ -1,9 +1,7 @@
 # Thingstarter
 ***SENG365 Assignment 2***
 
-Live Site: http://thingstarter.michaelrausch.nz/
-
-![ThingStarter](https://static.michaelrausch.nz/image/thingstarter.png)
+Demo: https://www.youtube.com/watch?v=2f72-ErFgdY
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
